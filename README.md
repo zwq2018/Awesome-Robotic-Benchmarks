@@ -6,9 +6,9 @@ Counts (tasks / metrics / robot configs) are recorded as numbers; modalities are
 
 human_teleoperation — trajectories recorded from a human controlling the robot/simulator (e.g., teleop, VR).
 
-motion_planner — trajectories generated/executed by a planner/IK/trajectory optimizer (e.g., MoveIt, RRT, CHOMP). Pros: physically feasible, repeatable “expert” demos. Cons: limited diversity; struggles with contact-rich quirks.
+motion_planner — trajectories generated/executed by a planner/IK/trajectory optimizer (e.g., MoveIt, RRT, CHOMP).
 
-synthetic — trajectories or episodes created programmatically or by generative scripts/LLMs without a physics-aware planner or human. Pros: massive scale, high variety. Cons: feasibility not guaranteed; may ignore dynamics.
+synthetic — trajectories or episodes created programmatically or by generative scripts/LLMs without a physics-aware planner or human.
 
 NOTE: currently this repo is underdevelopment, any pr is welcomed.
 
