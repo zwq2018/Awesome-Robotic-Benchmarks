@@ -2,11 +2,9 @@ import yaml, os, re
 from pathlib import Path
 from datetime import datetime
 import pandas as pd
-import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parents[1]
 BENCH = ROOT / "benchmarks"
-
 README = ROOT / "README.md"
 
 # Streamlined domain taxonomy
@@ -19,17 +17,6 @@ DOMAIN_ORDER = [
     "Simulation",
     "Other"
 ]
-
-# Subtypes for each domain
-SUBTYPE_MAP = {
-    "Manipulation": ["table-top", "dexterous-hand", "dual-arm", "mobile-manipulation"],
-    "Locomotion": ["humanoid", "bipedal", "quadrupedal", "wheeled"],
-    "Navigation": ["social-navigation", "outdoor", "indoor", "multi-robot"],
-    "HRI": ["collaboration", "communication", "social-interaction"],
-    "Safety": ["collision-avoidance", "fail-safe", "human-safety"],
-    "Simulation": ["sapien", "isaac-sim", "gazebo", "mujoco", "pybullet"],
-    "Other": ["mixed", "interdisciplinary", "novel"]
-}
 
 def slug(s: str) -> str:
     return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')
@@ -73,10 +60,8 @@ def load_entries():
         data_source_info = entry.get("data_source", {})
         if isinstance(data_source_info, dict):
             collection_method = data_source_info.get("collection_method", "unknown")
-            dataset_size = data_source_info.get("size", "unknown")
         else:
             collection_method = "unknown"
-            dataset_size = "unknown"
         
         rows.append({
             "name": entry.get("name", ""),
@@ -92,10 +77,7 @@ def load_entries():
             "num_metrics": len(entry.get("metrics", [])),
             "robot_config": robot_configs,
             "num_robot_configs": num_robot_configs,
-            "modality": entry.get("modality", []),
-            "setting": entry.get("setting", []),
             "collection_method": collection_method,
-            "dataset_size": dataset_size,
             "homepage": entry.get("resources", {}).get("homepage", ""),
             "paper": entry.get("resources", {}).get("paper", ""),
             "code": entry.get("resources", {}).get("code", ""),
@@ -104,58 +86,44 @@ def load_entries():
         })
     return pd.DataFrame(rows)
 
-
-
-
 def linkify(text, url):
     return f"[{text}]({url})" if url else ""
 
-def make_comparison_table(domain_df: pd.DataFrame, domain_name: str) -> str:
-    """Create detailed comparison table for benchmarks within a domain"""
+def make_summary_table(domain_df: pd.DataFrame, domain_name: str) -> str:
+    """Create summary comparison table for benchmarks within a domain"""
     if domain_df.empty:
         return ""
     
     # Sort by date, then name
     domain_df = domain_df.sort_values(by=["dt", "name"], ascending=[True, True], na_position="last")
     
-    # Add subtype column for Manipulation domain
+    # For Manipulation domain, include subtype column
     if domain_name == "Manipulation":
         table_lines = [
-            "| Benchmark | Year | Subtype | Tasks | Metrics | Robot Configs | Data Source | Links |",
-            "|---|---:|---|---:|---:|---:|---|---|"
+            "| Benchmark | Subtype | Tasks | Metrics | Robot Configs | Data Source |",
+            "|---|---|---:|---:|---:|---|"
         ]
-    else:
-        table_lines = [
-            "| Benchmark | Year | Tasks | Metrics | Robot Configs | Data Source | Links |",
-            "|---|---:|---:|---:|---:|---|---|"
-        ]
-    
-    for _, r in domain_df.iterrows():
-        # Build links with emojis
-        links_bits = []
-        if r["homepage"]: links_bits.append(linkify("🏠", r["homepage"]))
-        if r["paper"]: links_bits.append(linkify("📄", r["paper"]))
-        if r["code"]: links_bits.append(linkify("💻", r["code"]))
-        if r["data"]: links_bits.append(linkify("📊", r["data"]))
-        if r["leaderboard"]: links_bits.append(linkify("🏆", r["leaderboard"]))
-        links = " ".join(links_bits) if links_bits else "-"
         
-        year_str = str(int(r["year"])) if pd.notna(r["year"]) else "N/A"
-        
-        if domain_name == "Manipulation":
+        for _, r in domain_df.iterrows():
             subtype = r["subtype"] if r["subtype"] else "-"
             table_lines.append(
-                f"| {r['name']} | {year_str} | {subtype} | {r['num_tasks']} | {r['num_metrics']} | {r['num_robot_configs']} | {r['collection_method']} | {links} |"
+                f"| {r['name']} | {subtype} | {r['num_tasks']} | {r['num_metrics']} | {r['num_robot_configs']} | {r['collection_method']} |"
             )
-        else:
+    else:
+        table_lines = [
+            "| Benchmark | Tasks | Metrics | Robot Configs | Data Source |",
+            "|---|---:|---:|---:|---|"
+        ]
+        
+        for _, r in domain_df.iterrows():
             table_lines.append(
-                f"| {r['name']} | {year_str} | {r['num_tasks']} | {r['num_metrics']} | {r['num_robot_configs']} | {r['collection_method']} | {links} |"
+                f"| {r['name']} | {r['num_tasks']} | {r['num_metrics']} | {r['num_robot_configs']} | {r['collection_method']} |"
             )
     
     return "\n".join(table_lines)
 
 def build_readme(df: pd.DataFrame):
-    """Build enhanced README with streamlined organization"""
+    """Build README with bullet list format + summary tables"""
     def order_key(x):
         return (DOMAIN_ORDER.index(x) if x in DOMAIN_ORDER else 999, x)
     
@@ -170,12 +138,11 @@ def build_readme(df: pd.DataFrame):
     
     header = f"""# Awesome Robotics Benchmarks
 
-A curated, comprehensive collection of robotics benchmarks with detailed analysis and comparisons.
+A curated collection of robotics benchmarks organized by domain with detailed comparisons.
 
 ## Overview
 - **{total_benchmarks}** benchmarks across **{domains_count}** domains
-- Detailed metrics and robot configuration analysis
-
+- Each section includes benchmark descriptions and comparison summary
 
 ## Domains
 {chr(10).join(toc_lines)}
@@ -192,17 +159,10 @@ A curated, comprehensive collection of robotics benchmarks with detailed analysi
         
         body_parts.append(f"**{benchmark_count} benchmarks**\n")
         
-        
-        # Comparison table
-        comparison_table = make_comparison_table(domain_df, domain)
-        if comparison_table:
-            body_parts.append("### Comparison\n")
-            body_parts.append(comparison_table + "\n")
-        
-        # Benchmark descriptions
-        body_parts.append("### Benchmarks\n")
+        # Sort benchmarks by date
         domain_df_sorted = domain_df.sort_values(by=["dt", "name"], ascending=[True, True], na_position="last")
         
+        # List each benchmark with bullet points
         for _, r in domain_df_sorted.iterrows():
             # Build resource links
             links_parts = []
@@ -215,10 +175,19 @@ A curated, comprehensive collection of robotics benchmarks with detailed analysi
             links_str = " | ".join(links_parts) if links_parts else ""
             year_str = f" ({int(r['year'])})" if pd.notna(r["year"]) else ""
             
-            body_parts.append(f"**{r['name']}**{year_str}: {r['description']}")
+            # Bullet point format
+            body_parts.append(f"- **{r['name']}**{year_str}: {r['description']}")
             if links_str:
-                body_parts.append(f"  \n*Resources*: {links_str}")
+                body_parts.append(f"  \n  *Resources*: {links_str}")
             body_parts.append("")  # Empty line
+        
+        # Add summary comparison table at the end of each domain
+        body_parts.append("### Summary Comparison\n")
+        summary_table = make_summary_table(domain_df, domain)
+        if summary_table:
+            body_parts.append(summary_table + "\n")
+        else:
+            body_parts.append("*No benchmarks available for comparison.*\n")
     
     # Write the complete README
     README.write_text(header + "\n".join(body_parts), encoding="utf-8")
