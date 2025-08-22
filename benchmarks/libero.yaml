@@ -1,0 +1,18 @@
+name: LIBERO
+domain: Multitask/Embodied
+first_release_date: 2023-10-01
+tasks: [multitask-manipulation, language-conditioned]
+modality: [RGB, depth, proprioceptive]
+setting: [sim, real]
+metrics: [success_rate, multitask_generalization]
+resources:
+  homepage: "https://libero-project.github.io/"
+  paper: "https://arxiv.org/abs/2310.08531"
+  code: "https://github.com/Lifelong-Robot-Learning/LIBERO"
+  data: "https://libero-project.github.io/"
+strengths: |
+  Emphasizes multitask and knowledge transfer; language-conditioned tasks.
+limitations: |
+  Real-world evaluation requires careful setup; domain gap across embodiments.
+notes: |
+  Include task composition details and evaluation protocol for fair comparison.

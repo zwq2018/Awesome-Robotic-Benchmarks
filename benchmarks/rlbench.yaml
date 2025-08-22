@@ -1,0 +1,18 @@
+name: RLBench
+domain: Manipulation
+first_release_date: 2019-10-01
+tasks: [pick-place, open-drawer, tool-use, multi-step]
+modality: [RGB, depth, proprioceptive]
+setting: [sim]
+metrics: [success_rate@N]
+resources:
+  homepage: "https://sites.google.com/view/rlbench"
+  paper: "https://arxiv.org/abs/1909.12271"
+  code: "https://github.com/stepjam/RLBench"
+  data: ""
+strengths: |
+  Diverse manipulation tasks and variations; scriptable; popular for imitation/RL.
+limitations: |
+  Sim-only by default; realism of contact dynamics; sim2real gap requires care.
+notes: |
+  Report seeds and success definitions; check camera configs and resets.
