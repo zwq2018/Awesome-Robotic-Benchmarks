@@ -10,7 +10,7 @@ NOTE: currently this repo is underdevelopment, any pr is welcomed.
 
 ## Domains
 - [Manipulation](#manipulation)
-- [Generalist)](#generalist)
+- [Generalist](#generalist)
 - [Navigation/SLAM](#navigation-slam)
 
 ---

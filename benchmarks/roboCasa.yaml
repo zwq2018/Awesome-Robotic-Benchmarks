@@ -6,7 +6,7 @@ description: "A large-scale simulation framework for generalist household robots
 task_count: "100 (25 atomic + 75 composite)"
 metric_count: "1 (success rate for task completion)"
 robot_config_count: "3 (supports single-arm mobiles, humanoids, quadruped-with-arm)"
-modalities: [RGB, proprioceptive]
+modality: [RGB, proprioceptive]
 setting: [sim]
 sim_backend: "PhysX (NVIDIA Omniverse)"
 data_source:

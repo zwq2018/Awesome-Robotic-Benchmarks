@@ -6,7 +6,7 @@ description: "A dual-arm manipulation benchmark and data-generation framework th
 task_count: "50"
 metric_count: "1 (task success rate)"
 robot_config_count: 1
-modalities: [RGB, depth, language]
+modality: [RGB, depth, language]
 setting: [sim, real]
 sim_backend: "Custom (generative pipeline with spatial planner; real robot: COBOT Magic)"
 data_source:
