@@ -6,7 +6,7 @@ description: "A benchmark for evaluating high-level reasoning in long-horizon ma
 task_count: "1,000 training tasks + 60 held-out tasks (1,060 total)"
 metric_count: "2 (sequence success rate and subtask completion)"
 robot_config_count: 1
-modalities: [RGB, language, proprioceptive]
+modality: [RGB, language, proprioceptive]
 setting: [sim]
 sim_backend: "Not specified (custom sim with human teleoperation for data)"
 data_source:

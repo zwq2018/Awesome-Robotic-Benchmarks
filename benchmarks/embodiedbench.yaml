@@ -6,7 +6,7 @@ description: "A comprehensive benchmark to evaluate vision-driven embodied agent
 task_count: "1128 (testing tasks across 4 envs)"
 metric_count: "2 (e.g., success rate and subgoal success)"
 robot_config_count: 4
-modalities: [RGB, language]
+modality: [RGB, language]
 setting: [sim]
 sim_backend: "Multiple – AI2-THOR (Unity) for EB-ALFRED, Habitat-Sim for EB-Habitat/Navigation, and a robotics simulator for EB-Manipulation"
 data_source:

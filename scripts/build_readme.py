@@ -41,7 +41,7 @@ def load_entries():
         ds = entry.get("data_source", {}) or {}
         resources = entry.get("resources", {}) or {}
 
-        # Fallbacks: if count fields missing, infer from arrays
+        
         task_count = entry.get("task_count")
         if task_count is None:
             task_count = len(entry.get("tasks", []) or [])
@@ -124,6 +124,8 @@ def build_readme(df: pd.DataFrame):
         "A curated collection of robotics benchmarks organized by domain with concise, comparable tables.\n\n"
         "Counts (tasks / metrics / robot configs) are recorded as numbers; modalities are listed in detail; "
         "SIM shows the simulator backend (e.g., CoppeliaSim, SAPIEN, MuJoCo).\n\n"
+        "motion.\n\n"
+        "NOTE: currently this repo is underdevelopment, any pr is welcomed.\n\n"
         "## Domains\n" + toc + "\n\n---\n"
     )
 

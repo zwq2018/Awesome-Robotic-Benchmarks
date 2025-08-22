@@ -6,7 +6,7 @@ description: "An open-source simulated benchmark for learning long-horizon langu
 task_count: "34"
 metric_count: "1 (primary metric: success rate)"
 robot_config_count: 1
-modalities: [RGB, depth, proprioceptive, language, tactile]
+modality: [RGB, depth, proprioceptive, language, tactile]
 setting: [sim]
 sim_backend: "PyBullet"
 data_source:

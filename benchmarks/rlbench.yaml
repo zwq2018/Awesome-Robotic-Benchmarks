@@ -6,7 +6,7 @@ description: "A large-scale learning environment featuring 100 unique vision-gui
 task_count: "100"
 metric_count: "1 (task success rate)"
 robot_config_count: 1
-modalities: [RGB, depth, segmentation, proprioceptive]
+modality: [RGB, depth, segmentation, proprioceptive]
 setting: [sim]
 sim_backend: "CoppeliaSim (V-REP)"
 data_source:
