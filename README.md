@@ -1,87 +1,74 @@
 # Awesome Robotics Benchmarks
 
-A curated collection of robotics benchmarks organized by domain with detailed comparisons.
+A curated collection of robotics benchmarks organized by domain with concise, comparable tables.
 
-## Overview
-- **9** benchmarks across **4** domains
-- Each section includes benchmark descriptions and comparison summary
+Counts (tasks / metrics / robot configs) are recorded as numbers; modalities are listed in detail; SIM shows the simulator backend (e.g., CoppeliaSim, SAPIEN, MuJoCo).
 
 ## Domains
 - [Manipulation](#manipulation)
-- [Simulation](#simulation)
-- [Other](#other)
+- [Generalist)](#generalist)
 - [Navigation/SLAM](#navigation-slam)
 
 ---
 
 ## Manipulation
 
-**6 benchmarks**
+**7 benchmarks**
 
-- **RLBench** (2019): A large-scale simulation benchmark with 100 hand-designed manipulation tasks across varied difficulty. Provides scripted demos via motion planning and is widely used for RL, imitation learning, multi-task, and few-shot studies.
+- **RLBench** (2019): A large-scale learning environment featuring 100 unique vision-guided manipulation tasks of varying difficulty. RLBench provides multimodal observations (RGB, depth, segmentation, proprioception) from multiple camera angles and an *infinite* supply of demonstration trajectories generated via built-in motion planners.
   
-  *Resources*: [Paper](https://arxiv.org/abs/1909.12271) | [Website](https://sites.google.com/view/rlbench) | [Code](https://github.com/stepjam/RLBench)
+  *Resources*: [Paper](https://arxiv.org/abs/1909.12271 ) | [Website](https://sites.google.com/view/rlbench ) | [Code](https://github.com/stepjam/RLBench ) | [Data](N/A (demos are generated on-the-fly by simulator))
 
-- **CALVIN** (2021): A benchmark for long-horizon, language-conditioned manipulation: agents follow sequences of unconstrained natural-language instructions. Released with teleoperated play data and language directives.
+- **CALVIN** (2021): An open-source simulated benchmark for learning long-horizon language-conditioned robot manipulation tasks. It features a Franka Emika Panda arm in four tabletop environments and 34 distinct manipulation tasks with unconstrained language instructions
   
-  *Resources*: [Paper](https://arxiv.org/abs/2112.03227) | [Website](https://calvin.cs.uni-freiburg.de/) | [Code](https://github.com/mees/calvin) | [Data](https://github.com/mees/calvin/tree/main/dataset)
+  *Resources*: [Paper](https://arxiv.org/abs/2112.03227 ) | [Website](https://calvin.cs.uni-freiburg.de (offline, see GitHub)) | [Code](https://github.com/mees/calvin ) | [Data](https://github.com/mees/calvin/tree/main/dataset (download scripts))
 
 - **LIBERO** (2023): A benchmark for lifelong robot learning featuring multitask manipulation with language conditioning. Focuses on knowledge transfer and generalization across diverse manipulation tasks.
   
   *Resources*: [Paper](https://arxiv.org/abs/2310.08531) | [Website](https://libero-project.github.io/) | [Code](https://github.com/Lifelong-Robot-Learning/LIBERO) | [Data](https://libero-project.github.io/)
 
-- **RoboTwin** (2024): A generative digital-twin data generator and benchmark for bimanual (dual-arm) manipulation, using 3D generative models and LLMs to create diverse expert datasets and evaluation scenarios. RoboTwin 2.0 expands object libraries and unifies dual-arm evaluation.
+- **RoboCasa** (2024): A large-scale simulation framework for generalist household robots, focusing on diverse kitchen environments.
   
-  *Resources*: [Paper](https://arxiv.org/abs/2409.02920) | [Website](https://robotwin-platform.github.io/) | [Data](https://robotwin-platform.github.io/)
+  *Resources*: [Paper](https://arxiv.org/abs/2406.02523) | [Website](https://robocasa.ai ) | [Code](https://github.com/robcasa-team/robocasa (coming soon)) | [Data](Available on project website (human + generated demos))
 
-- **VLABench** (2024): A large-scale benchmark for language-conditioned manipulation with long-horizon reasoning: 100 task categories with strong randomization and 2,000+ objects. Evaluates both interactive VLA policies and non-interactive VLM reasoning.
+- **RoboTwin** (2024): A dual-arm manipulation benchmark and data-generation framework that uses generative 3D models and LLMs to create diverse bimanual task scenarios. RoboTwin provides a real-to-sim “digital twin” pipeline to generate varied object models and expert demonstrations, and an evaluation platform aligned with a real dual-arm robot (COBOT Magic platform). It combines simulated expert data with real-world teleoperated demos for coordinated two-arm tasks.
+  
+  *Resources*: [Paper](https://arxiv.org/abs/2409.02920 ) | [Website](https://robotwin-benchmark.github.io) | [Code](https://github.com/RoboTwin-Platform/RoboTwin) | [Data](https://github.com/RoboTwin-Platform/RoboTwin/tree/main/data (simulated & real data))
+
+- **VLABench** (2024): Language-conditioned manipulation benchmark with 100 categories emphasizing long-horizon reasoning and world knowledge.
   
   *Resources*: [Paper](https://arxiv.org/abs/2412.18194) | [Website](https://vlabench.github.io/) | [Code](https://github.com/OpenMOSS/VLABench) | [Data](https://vlabench.github.io/)
 
-- **RoboCerebra** (2025): A long-horizon manipulation benchmark targeting System-2 abilities (planning, reflection, memory) with extended subtask sequences in household environments. Tasks/instructions are LLM-generated; trajectories are executed by humans in simulation.
+- **RoboCerebra** (2025): A benchmark for evaluating high-level reasoning in long-horizon manipulation. RoboCerebra provides a large-scale simulation dataset of complex household tasks with extended subtask sequences, generated by GPT-based instruction decomposition and executed by human operators in simulatio. It emphasizes “System 2” planning skills (deliberative, goal-directed thinking) in vision-language-conditioned manipulation.
   
-  *Resources*: [Paper](https://arxiv.org/abs/2506.06677)
+  *Resources*: [Paper](https://arxiv.org/abs/2506.06677) | [Website](https://robocerebra.github.io (if available)) | [Code](NA) | [Data](https://huggingface.co/datasets/qiukingballball/RoboCerebra )
 
 ### Summary Comparison
 
-| Benchmark | Subtype | Tasks | Metrics | Robot Configs | Data Source |
-|---|---|---:|---:|---:|---|
-| RLBench | table-top | 5 | 3 | 3 | motion_planner |
-| CALVIN | table-top | 3 | 3 | 2 | human_teleoperation |
-| LIBERO | table-top | 4 | 4 | 3 | human_teleoperation |
-| RoboTwin | dual-arm | 3 | 3 | 3 | synthetic |
-| VLABench | table-top | 3 | 3 | 1 | motion_planner |
-| RoboCerebra | table-top | 3 | 3 | 1 | both |
+| Benchmark | Subtype | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |
+|---|---|---:|---:|---:|---|---|---|---|
+| RLBench | table-top | 100 | 1 (task success rate) | 1 | - | CoppeliaSim (V-REP) | motion_planner | 100 tasks × infinite demos (motion planner can generate unlimited trajectories) |
+| CALVIN | table-top | 34 | 1 (primary metric: success rate) | 1 | - | PyBullet | human_teleoperation | Hours of teleoperated play data (20K language instructions); 4 environments (A–D) with ~23K trajectories for training |
+| LIBERO | table-top | 130 | 4 | 3 | RGB, depth, proprioceptive, language | RoboSuite (MuJoCo) | human_teleoperation | 130+ tasks, 2500+ demonstrations |
+| RoboCasa | mobile-manipulation (household) | 100 (25 atomic + 75 composite) | 1 (success rate for task completion) | 3 (supports single-arm mobiles, humanoids, quadruped-with-arm) | - | PhysX (NVIDIA Omniverse) | both | 100+K demonstration trajectories (e.g. 50 human demos ×25 skills + 72K generated) |
+| RoboTwin | dual-arm | ~14 (diverse dual-arm tasks used for benchmarking) | 1 (task success rate) | 1 | - | Custom (generative pipeline with spatial planner; real robot: COBOT Magic) | both | Synthetic dataset (hundreds of expert demos) + limited real demos per task |
+| VLABench | table-top | 100 | 2 | 1 | RGB, language | MuJoCo (dm_control) | synthetic | not specified |
+| RoboCerebra | table-top | 1,000 training tasks + 60 held-out tasks (1,060 total) | 2 (sequence success rate and subtask completion) | 1 | - | Not specified (custom sim with human teleoperation for data) | both | 100k+ trajectories (e.g. 50 human demos ×25 skills + synthetic expansions) |
 
 
-## Simulation
+## Generalist)
 
 **1 benchmarks**
 
-- **RoboCasa** (2024): A large-scale simulation framework for training generalist robots in realistic kitchen environments: 120 scenes, 2,500+ objects, and 100 tasks (25 atomic + 75 composite). Includes 100K+ trajectories from human teleop and automated generation.
+- **EmbodiedBench** (2025): A comprehensive benchmark to evaluate vision-driven embodied agents (multi-modal LLM-based) across both high-level and low-level task. EmbodiedBench spans four simulated environments – EB-ALFRED and EB-Habitat (high-level household tasks), and EB-Navigation and EB-Manipulation (low-level navigation and robotic manipulation) – comprising 1,128 diverse test instances in total. It also defines six capability-oriented evaluation subsets to assess commonsense reasoning, complex instruction understanding, spatial awareness, visual perception, long-horizon planning, etc.
   
-  *Resources*: [Paper](https://arxiv.org/abs/2406.02523) | [Website](https://robocasa.ai/) | [Code](https://github.com/robocasa/robocasa) | [Data](https://robocasa.ai/docs/introduction/installation.html)
+  *Resources*: [Paper](https://arxiv.org/abs/2502.09560 ) | [Website](https://embodiedbench.github.io ) | [Code](https://github.com/embodiedbench/EmbodiedBench ) | [Data](https://huggingface.co/embodiedbench (evaluation data))
 
 ### Summary Comparison
 
-| Benchmark | Tasks | Metrics | Robot Configs | Data Source |
-|---|---:|---:|---:|---|
-| RoboCasa | 4 | 3 | 4 | both |
-
-
-## Other
-
-**1 benchmarks**
-
-- **EmbodiedBench** (2025): A comprehensive benchmark to assess MLLM-based embodied agents across 1,128 tasks in four simulated environments—from high-level household semantics to low-level navigation/manipulation. Initial results show leading MLLMs still struggle (best ≈28.9% avg.).
-  
-  *Resources*: [Paper](https://openreview.net/forum?id=DgGF2LEBPS) | [Website](https://embodiedbench.github.io) | [Code](https://github.com/EmbodiedBench/EmbodiedBench) | [Data](https://embodiedbench.github.io)
-
-### Summary Comparison
-
-| Benchmark | Tasks | Metrics | Robot Configs | Data Source |
-|---|---:|---:|---:|---|
-| EmbodiedBench | 4 | 3 | 1 | synthetic |
+| Benchmark | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |
+|---|---:|---:|---:|---|---|---|---|
+| EmbodiedBench | 1128 (testing tasks across 4 envs) | 2 (e.g., success rate and subgoal success) | 4 | - | Multiple – AI2-THOR (Unity) for EB-ALFRED, Habitat-Sim for EB-Habitat/Navigation, and a robotics simulator for EB-Manipulation | both (uses existing human-collected and synthetic tasks) | 1,128 evaluation scenarios (drawn from ALFRED, Habitat, etc.) |
 
 
 ## Navigation/SLAM
@@ -94,6 +81,6 @@ A curated collection of robotics benchmarks organized by domain with detailed co
 
 ### Summary Comparison
 
-| Benchmark | Tasks | Metrics | Robot Configs | Data Source |
-|---|---:|---:|---:|---|
-| KITTI | 4 | 4 | 0 | unknown |
+| Benchmark | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |
+|---|---:|---:|---:|---|---|---|---|
+| KITTI | 4 | 4 |  | RGB, lidar, GPS/IMU | - | - | - |

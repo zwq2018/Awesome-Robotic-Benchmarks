@@ -1,19 +1,20 @@
 name: EmbodiedBench
-domain: Other
-first_release_date: 2025-05-01
-
-description: "A comprehensive benchmark to assess MLLM-based embodied agents across 1,128 tasks in four simulated environments—from high-level household semantics to low-level navigation/manipulation. Initial results show leading MLLMs still struggle (best ≈28.9% avg.)."
-tasks: [navigation, manipulation, household-semantics, planning-and-reasoning]
-metrics: [overall_score, success_rate, action_sequence_match_score]
-robot_config: [simulated-agents]
-modality: [RGB, language, multimodal]
+domain: Generalist)
+subtype: N/A
+first_release_date: 2025-02-13
+description: "A comprehensive benchmark to evaluate vision-driven embodied agents (multi-modal LLM-based) across both high-level and low-level task. EmbodiedBench spans four simulated environments – EB-ALFRED and EB-Habitat (high-level household tasks), and EB-Navigation and EB-Manipulation (low-level navigation and robotic manipulation) – comprising 1,128 diverse test instances in total. It also defines six capability-oriented evaluation subsets to assess commonsense reasoning, complex instruction understanding, spatial awareness, visual perception, long-horizon planning, etc."
+task_count: "1128 (testing tasks across 4 envs)"
+metric_count: "2 (e.g., success rate and subgoal success)"
+robot_config_count: 4
+modalities: [RGB, language]
 setting: [sim]
+sim_backend: "Multiple – AI2-THOR (Unity) for EB-ALFRED, Habitat-Sim for EB-Habitat/Navigation, and a robotics simulator for EB-Manipulation"
 data_source:
-  size: "1,128 testing tasks; curated capability subsets"
-  collection_method: "synthetic"
+  size: "1,128 evaluation scenarios (drawn from ALFRED, Habitat, etc.)"
+  collection_method: both (uses existing human-collected and synthetic tasks)
 resources:
-  homepage: "https://embodiedbench.github.io"
-  paper: "https://openreview.net/forum?id=DgGF2LEBPS"
-  code: "https://github.com/EmbodiedBench/EmbodiedBench"
-  data: "https://embodiedbench.github.io"
-leaderboard: ""
+  homepage: "https://embodiedbench.github.io "
+  paper: "https://arxiv.org/abs/2502.09560 "
+  code: "https://github.com/embodiedbench/EmbodiedBench "
+  data: "https://huggingface.co/embodiedbench (evaluation data)"
+  leaderboard: "https://embodiedbench.github.io#leaderboard "

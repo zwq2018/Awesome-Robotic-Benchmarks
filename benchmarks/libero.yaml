@@ -1,47 +1,25 @@
 name: LIBERO
 domain: Manipulation
-subtype: table-top  # See subtype options below
+subtype: table-top
 first_release_date: 2023-10-01
 
-# Brief 1-2 sentence description
 description: "A benchmark for lifelong robot learning featuring multitask manipulation with language conditioning. Focuses on knowledge transfer and generalization across diverse manipulation tasks."
 
-# Task and evaluation details
-tasks: 
-  - multitask-manipulation
-  - language-conditioned
-  - sequential-tasks
-  - generalization
+# Only record counts below
+task_count: 130
+metric_count: 4
+robot_config_count: 3
 
-metrics: 
-  - success_rate
-  - multitask_generalization
-  - transfer_efficiency
-  - sample_efficiency
+# Keep modality in detail
+modality: [RGB, depth, proprioceptive, language]
 
-# Robot configuration support
-robot_config:
-  - mobile-manipulator
-  - fixed-base-arm
-  - franka-emika
+setting: [sim, real]
+sim_backend: "RoboSuite (MuJoCo)"  # LIBERO is built on RoboSuite/MuJoCo. :contentReference[oaicite:0]{index=0}
 
-# Data characteristics  
-modality: 
-  - RGB
-  - depth
-  - proprioceptive
-  - language
-
-setting: 
-  - sim
-  - real
-
-# Dataset information
 data_source:
-  size: "50+ tasks, 2500+ demonstrations"
-  collection_method: "human_teleoperation"  # human_teleoperation, motion_planner, both, synthetic
+  size: "130+ tasks, 2500+ demonstrations"
+  collection_method: "human_teleoperation"
 
-# Resources
 resources:
   homepage: "https://libero-project.github.io/"
   paper: "https://arxiv.org/abs/2310.08531"

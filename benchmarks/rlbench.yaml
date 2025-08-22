@@ -1,21 +1,20 @@
-# RLBench
 name: RLBench
 domain: Manipulation
 subtype: table-top
 first_release_date: 2019-09-26
-
-description: "A large-scale simulation benchmark with 100 hand-designed manipulation tasks across varied difficulty. Provides scripted demos via motion planning and is widely used for RL, imitation learning, multi-task, and few-shot studies."
-tasks: [pick-place, open-drawer, door-opening, tool-use, multi-step]
-metrics: [success_rate, completion_rate, episode_length]
-robot_config: [fixed-base-arm, 7-DoF-arm, 2-finger-gripper]
-modality: [RGB, depth, segmentation, proprioceptive]
+description: "A large-scale learning environment featuring 100 unique vision-guided manipulation tasks of varying difficulty. RLBench provides multimodal observations (RGB, depth, segmentation, proprioception) from multiple camera angles and an *infinite* supply of demonstration trajectories generated via built-in motion planners."
+task_count: "100"
+metric_count: "1 (task success rate)"
+robot_config_count: 1
+modalities: [RGB, depth, segmentation, proprioceptive]
 setting: [sim]
+sim_backend: "CoppeliaSim (V-REP)"
 data_source:
-  size: "100 tasks; scripted demos per task (effectively unlimited)"
-  collection_method: "motion_planner"
+  size: "100 tasks × infinite demos (motion planner can generate unlimited trajectories)"
+  collection_method: motion_planner
 resources:
-  homepage: "https://sites.google.com/view/rlbench"
-  paper: "https://arxiv.org/abs/1909.12271"
-  code: "https://github.com/stepjam/RLBench"
-  data: ""
-leaderboard: ""
+  homepage: "https://sites.google.com/view/rlbench "
+  paper: "https://arxiv.org/abs/1909.12271 "
+  code: "https://github.com/stepjam/RLBench "
+  data: "N/A (demos are generated on-the-fly by simulator)"
+  leaderboard: "N/A"

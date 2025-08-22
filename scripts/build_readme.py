@@ -1,4 +1,4 @@
-import yaml, os, re
+import yaml, re
 from pathlib import Path
 from datetime import datetime
 import pandas as pd
@@ -7,82 +7,72 @@ ROOT = Path(__file__).resolve().parents[1]
 BENCH = ROOT / "benchmarks"
 README = ROOT / "README.md"
 
-# Streamlined domain taxonomy
 DOMAIN_ORDER = [
     "Manipulation",
-    "Locomotion", 
+    "Locomotion",
     "Navigation",
     "HRI",
     "Safety",
     "Simulation",
-    "Other"
+    "Generalist"
+    "Other",
 ]
 
 def slug(s: str) -> str:
     return re.sub(r'[^a-z0-9]+', '-', s.lower()).strip('-')
 
 def parse_date(date_str):
-    """Parse date with multiple format support"""
     if not date_str:
         return None
-    
-    # Handle different date formats
-    for fmt in ["%Y-%m-%d", "%Y-%m", "%Y"]:
+    for fmt in ("%Y-%m-%d", "%Y-%m", "%Y"):
         try:
             return datetime.strptime(str(date_str), fmt)
-        except (ValueError, TypeError):
+        except Exception:
             continue
     return None
 
 def load_entries():
     rows = []
     for yml in sorted(BENCH.glob("*.yaml")):
-        try:
-            with open(yml, "r", encoding="utf-8") as f:
-                # Handle multiple documents, take first one
-                documents = list(yaml.safe_load_all(f))
-                entry = documents[0] if documents else {}
-        except Exception as e:
-            print(f"Error loading {yml}: {e}")
-            continue
-        
-        if not entry:
-            continue
-            
-        # Parse date
+        with open(yml, "r", encoding="utf-8") as f:
+            entry = yaml.safe_load(f) or {}
+
         dt = parse_date(entry.get("first_release_date"))
-        
-        # Count robot configurations
-        robot_configs = entry.get("robot_config", [])
-        num_robot_configs = len(robot_configs) if robot_configs else 0
-        
-        # Determine data collection method
-        data_source_info = entry.get("data_source", {})
-        if isinstance(data_source_info, dict):
-            collection_method = data_source_info.get("collection_method", "unknown")
-        else:
-            collection_method = "unknown"
-        
+        ds = entry.get("data_source", {}) or {}
+        resources = entry.get("resources", {}) or {}
+
+        # Fallbacks: if count fields missing, infer from arrays
+        task_count = entry.get("task_count")
+        if task_count is None:
+            task_count = len(entry.get("tasks", []) or [])
+        metric_count = entry.get("metric_count")
+        if metric_count is None:
+            metric_count = len(entry.get("metrics", []) or [])
+        robot_config_count = entry.get("robot_config_count")
+        if robot_config_count is None:
+            robot_config_count = len(entry.get("robot_config", []) or [])
+
         rows.append({
-            "name": entry.get("name", ""),
-            "domain": entry.get("domain", "Other"),
-            "subtype": entry.get("subtype", ""),
-            "first_release_date": entry.get("first_release_date", ""),
+            "name": entry.get("name",""),
+            "domain": entry.get("domain","Other"),
+            "subtype": entry.get("subtype",""),
+            "first_release_date": entry.get("first_release_date",""),
             "dt": dt,
             "year": dt.year if dt else None,
-            "description": entry.get("description", ""),
-            "tasks": entry.get("tasks", []),
-            "num_tasks": len(entry.get("tasks", [])),
-            "metrics": entry.get("metrics", []),
-            "num_metrics": len(entry.get("metrics", [])),
-            "robot_config": robot_configs,
-            "num_robot_configs": num_robot_configs,
-            "collection_method": collection_method,
-            "homepage": entry.get("resources", {}).get("homepage", ""),
-            "paper": entry.get("resources", {}).get("paper", ""),
-            "code": entry.get("resources", {}).get("code", ""),
-            "data": entry.get("resources", {}).get("data", ""),
-            "leaderboard": entry.get("resources", {}).get("leaderboard", ""),
+            "description": entry.get("description",""),
+            "task_count": task_count,
+            "metric_count": metric_count,
+            "robot_config_count": robot_config_count,
+            "modality": ", ".join(entry.get("modality", []) or []),
+            "setting": ", ".join(entry.get("setting", []) or []),
+            "sim_backend": entry.get("sim_backend",""),
+            "collection_method": ds.get("collection_method",""),
+            "data_size": ds.get("size",""),
+            "homepage": resources.get("homepage",""),
+            "paper": resources.get("paper",""),
+            "code": resources.get("code",""),
+            "data": resources.get("data",""),
+            "leaderboard": resources.get("leaderboard",""),
         })
     return pd.DataFrame(rows)
 
@@ -90,125 +80,84 @@ def linkify(text, url):
     return f"[{text}]({url})" if url else ""
 
 def make_summary_table(domain_df: pd.DataFrame, domain_name: str) -> str:
-    """Create summary comparison table for benchmarks within a domain"""
     if domain_df.empty:
         return ""
-    
-    # Sort by date, then name
-    domain_df = domain_df.sort_values(by=["dt", "name"], ascending=[True, True], na_position="last")
-    
-    # For Manipulation domain, include subtype column
+    domain_df = domain_df.sort_values(by=["dt","name"], ascending=[True, True], na_position="last")
+
     if domain_name == "Manipulation":
-        table_lines = [
-            "| Benchmark | Subtype | Tasks | Metrics | Robot Configs | Data Source |",
-            "|---|---|---:|---:|---:|---|"
-        ]
-        
-        for _, r in domain_df.iterrows():
-            subtype = r["subtype"] if r["subtype"] else "-"
-            table_lines.append(
-                f"| {r['name']} | {subtype} | {r['num_tasks']} | {r['num_metrics']} | {r['num_robot_configs']} | {r['collection_method']} |"
-            )
+        head = "| Benchmark | Subtype | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |"
+        sep  = "|---|---|---:|---:|---:|---|---|---|---|"
     else:
-        table_lines = [
-            "| Benchmark | Tasks | Metrics | Robot Configs | Data Source |",
-            "|---|---:|---:|---:|---|"
+        head = "| Benchmark | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |"
+        sep  = "|---|---:|---:|---:|---|---|---|---|"
+
+    lines = [head, sep]
+
+    for _, r in domain_df.iterrows():
+        cells = [
+            r['name'],
         ]
-        
-        for _, r in domain_df.iterrows():
-            table_lines.append(
-                f"| {r['name']} | {r['num_tasks']} | {r['num_metrics']} | {r['num_robot_configs']} | {r['collection_method']} |"
-            )
-    
-    return "\n".join(table_lines)
+        if domain_name == "Manipulation":
+            cells.append(r.get('subtype') or "-")
+        cells.extend([
+            str(r['task_count'] or ""),
+            str(r['metric_count'] or ""),
+            str(r['robot_config_count'] or ""),
+            r['modality'] or "-",
+            r['sim_backend'] or "-",
+            r['collection_method'] or "-",
+            r['data_size'] or "-",
+        ])
+        lines.append("| " + " | ".join(cells) + " |")
+
+    return "\n".join(lines)
 
 def build_readme(df: pd.DataFrame):
-    """Build README with bullet list format + summary tables"""
     def order_key(x):
         return (DOMAIN_ORDER.index(x) if x in DOMAIN_ORDER else 999, x)
-    
+
     domains = sorted(df["domain"].dropna().unique(), key=order_key)
-    
-    # Table of contents
-    toc_lines = [f"- [{d}](#{slug(d)})" for d in domains]
-    
-    # Statistics
-    total_benchmarks = len(df)
-    domains_count = len(domains)
-    
-    header = f"""# Awesome Robotics Benchmarks
+    toc = "\n".join([f"- [{d}](#{slug(d)})" for d in domains])
 
-A curated collection of robotics benchmarks organized by domain with detailed comparisons.
+    header = (
+        "# Awesome Robotics Benchmarks\n\n"
+        "A curated collection of robotics benchmarks organized by domain with concise, comparable tables.\n\n"
+        "Counts (tasks / metrics / robot configs) are recorded as numbers; modalities are listed in detail; "
+        "SIM shows the simulator backend (e.g., CoppeliaSim, SAPIEN, MuJoCo).\n\n"
+        "## Domains\n" + toc + "\n\n---\n"
+    )
 
-## Overview
-- **{total_benchmarks}** benchmarks across **{domains_count}** domains
-- Each section includes benchmark descriptions and comparison summary
-
-## Domains
-{chr(10).join(toc_lines)}
-
----
-"""
-    
-    body_parts = []
+    body = []
     for domain in domains:
-        body_parts.append(f"\n## {domain}\n")
-        
-        domain_df = df[df["domain"] == domain].copy()
-        benchmark_count = len(domain_df)
-        
-        body_parts.append(f"**{benchmark_count} benchmarks**\n")
-        
-        # Sort benchmarks by date
-        domain_df_sorted = domain_df.sort_values(by=["dt", "name"], ascending=[True, True], na_position="last")
-        
-        # List each benchmark with bullet points
-        for _, r in domain_df_sorted.iterrows():
-            # Build resource links
-            links_parts = []
-            if r["paper"]: links_parts.append(linkify("Paper", r["paper"]))
-            if r["homepage"]: links_parts.append(linkify("Website", r["homepage"]))
-            if r["code"]: links_parts.append(linkify("Code", r["code"]))
-            if r["data"]: links_parts.append(linkify("Data", r["data"]))
-            if r["leaderboard"]: links_parts.append(linkify("Leaderboard", r["leaderboard"]))
-            
-            links_str = " | ".join(links_parts) if links_parts else ""
-            year_str = f" ({int(r['year'])})" if pd.notna(r["year"]) else ""
-            
-            # Bullet point format
-            body_parts.append(f"- **{r['name']}**{year_str}: {r['description']}")
-            if links_str:
-                body_parts.append(f"  \n  *Resources*: {links_str}")
-            body_parts.append("")  # Empty line
-        
-        # Add summary comparison table at the end of each domain
-        body_parts.append("### Summary Comparison\n")
-        summary_table = make_summary_table(domain_df, domain)
-        if summary_table:
-            body_parts.append(summary_table + "\n")
-        else:
-            body_parts.append("*No benchmarks available for comparison.*\n")
-    
-    # Write the complete README
-    README.write_text(header + "\n".join(body_parts), encoding="utf-8")
+        ddf = df[df["domain"]==domain].copy()
+        body.append(f"\n## {domain}\n")
+        body.append(f"**{len(ddf)} benchmarks**\n")
+
+        ddf = ddf.sort_values(by=["dt","name"], ascending=[True, True], na_position="last")
+        for _, r in ddf.iterrows():
+            year = f" ({int(r['year'])})" if pd.notna(r['year']) else ""
+            line = f"- **{r['name']}**{year}: {r['description']}"
+            links = [linkify('Paper', r['paper']), linkify('Website', r['homepage']), linkify('Code', r['code']), linkify('Data', r['data'])]
+            links = " | ".join([x for x in links if x])
+            if links:
+                line += f"\n  \n  *Resources*: {links}"
+            body.append(line)
+            body.append("")
+
+        body.append("### Summary Comparison\n")
+        body.append(make_summary_table(ddf, domain))
+        body.append("")
+
+    README.write_text(header + "\n".join(body), encoding="utf-8")
 
 def main():
     df = load_entries()
     if df.empty:
         print("No entries found in benchmarks/.")
         return
-    
-    print(f"Loaded {len(df)} benchmarks")
-    print(f"Domains: {', '.join(sorted(df['domain'].unique()))}")
-    
-    # Debug date parsing
-    print(f"Dates parsed successfully: {df['dt'].notna().sum()}/{len(df)}")
-    if df['dt'].notna().sum() > 0:
-        print(f"Year range: {df['year'].min():.0f} - {df['year'].max():.0f}")
-    
     build_readme(df)
-    
-    print(f"✅ Built README with {len(df)} benchmarks across {df['domain'].nunique()} domains.")
+    print("Built README for", len(df), "benchmarks.")
 
 if __name__ == "__main__":
     main()
+

@@ -1,19 +1,20 @@
 name: RoboCasa
-domain: Simulation
+domain: Manipulation
+subtype: mobile-manipulation (household)
 first_release_date: 2024-06-04
-
-description: "A large-scale simulation framework for training generalist robots in realistic kitchen environments: 120 scenes, 2,500+ objects, and 100 tasks (25 atomic + 75 composite). Includes 100K+ trajectories from human teleop and automated generation."
-tasks: [atomic-skills, composite-long-horizon, kitchen-activities, mobile-manipulation]
-metrics: [success_rate, task_completion, generalization]
-robot_config: [mobile-manipulator, fixed-base-arm, humanoid, quadruped-with-arm]
-modality: [RGB, depth, proprioceptive]
+description: "A large-scale simulation framework for generalist household robots, focusing on diverse kitchen environments."
+task_count: "100 (25 atomic + 75 composite)"
+metric_count: "1 (success rate for task completion)"
+robot_config_count: "3 (supports single-arm mobiles, humanoids, quadruped-with-arm)"
+modalities: [RGB, proprioceptive]
 setting: [sim]
+sim_backend: "PhysX (NVIDIA Omniverse)"
 data_source:
-  size: "100K+ trajectories across 100 tasks"
-  collection_method: "both"
+  size: "100+K demonstration trajectories (e.g. 50 human demos ×25 skills + 72K generated)"
+  collection_method: both
 resources:
-  homepage: "https://robocasa.ai/"
+  homepage: "https://robocasa.ai "
   paper: "https://arxiv.org/abs/2406.02523"
-  code: "https://github.com/robocasa/robocasa"
-  data: "https://robocasa.ai/docs/introduction/installation.html"
-leaderboard: ""
+  code: "https://github.com/robcasa-team/robocasa (coming soon)"
+  data: "Available on project website (human + generated demos)"
+  leaderboard: "N/A"
