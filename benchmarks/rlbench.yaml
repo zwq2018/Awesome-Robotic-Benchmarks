@@ -1,18 +1,21 @@
+# RLBench
 name: RLBench
 domain: Manipulation
-first_release_date: 2019-10-01
-tasks: [pick-place, open-drawer, tool-use, multi-step]
-modality: [RGB, depth, proprioceptive]
+subtype: table-top
+first_release_date: 2019-09-26
+
+description: "A large-scale simulation benchmark with 100 hand-designed manipulation tasks across varied difficulty. Provides scripted demos via motion planning and is widely used for RL, imitation learning, multi-task, and few-shot studies."
+tasks: [pick-place, open-drawer, door-opening, tool-use, multi-step]
+metrics: [success_rate, completion_rate, episode_length]
+robot_config: [fixed-base-arm, 7-DoF-arm, 2-finger-gripper]
+modality: [RGB, depth, segmentation, proprioceptive]
 setting: [sim]
-metrics: [success_rate@N]
+data_source:
+  size: "100 tasks; scripted demos per task (effectively unlimited)"
+  collection_method: "motion_planner"
 resources:
   homepage: "https://sites.google.com/view/rlbench"
   paper: "https://arxiv.org/abs/1909.12271"
   code: "https://github.com/stepjam/RLBench"
   data: ""
-strengths: |
-  Diverse manipulation tasks and variations; scriptable; popular for imitation/RL.
-limitations: |
-  Sim-only by default; realism of contact dynamics; sim2real gap requires care.
-notes: |
-  Report seeds and success definitions; check camera configs and resets.
+leaderboard: ""

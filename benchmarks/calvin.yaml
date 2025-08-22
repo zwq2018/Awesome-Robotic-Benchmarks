@@ -1,0 +1,21 @@
+# CALVIN
+name: CALVIN
+domain: Manipulation
+subtype: table-top
+first_release_date: 2021-12-06
+
+description: "A benchmark for long-horizon, language-conditioned manipulation: agents follow sequences of unconstrained natural-language instructions. Released with teleoperated play data and language directives."
+tasks: [language-conditioned, long-horizon, sequential-manipulation]
+metrics: [sequence_success, instruction_success, subgoal_completion]
+robot_config: [fixed-base-arm, parallel-gripper]
+modality: [RGB-D, wrist-RGB-D, proprioceptive, language]
+setting: [sim]
+data_source:
+  size: "≈24 hours teleoperated play across 4 environments; ~20k language directives"
+  collection_method: "human_teleoperation"
+resources:
+  homepage: "https://calvin.cs.uni-freiburg.de/"
+  paper: "https://arxiv.org/abs/2112.03227"
+  code: "https://github.com/mees/calvin"
+  data: "https://github.com/mees/calvin/tree/main/dataset"
+leaderboard: ""

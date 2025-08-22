@@ -1,0 +1,19 @@
+name: EmbodiedBench
+domain: Other
+first_release_date: 2025-05-01
+
+description: "A comprehensive benchmark to assess MLLM-based embodied agents across 1,128 tasks in four simulated environments—from high-level household semantics to low-level navigation/manipulation. Initial results show leading MLLMs still struggle (best ≈28.9% avg.)."
+tasks: [navigation, manipulation, household-semantics, planning-and-reasoning]
+metrics: [overall_score, success_rate, action_sequence_match_score]
+robot_config: [simulated-agents]
+modality: [RGB, language, multimodal]
+setting: [sim]
+data_source:
+  size: "1,128 testing tasks; curated capability subsets"
+  collection_method: "synthetic"
+resources:
+  homepage: "https://embodiedbench.github.io"
+  paper: "https://openreview.net/forum?id=DgGF2LEBPS"
+  code: "https://github.com/EmbodiedBench/EmbodiedBench"
+  data: "https://embodiedbench.github.io"
+leaderboard: ""

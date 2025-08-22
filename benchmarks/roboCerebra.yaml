@@ -1,0 +1,20 @@
+name: RoboCerebra
+domain: Manipulation
+subtype: table-top
+first_release_date: 2025-06-07
+
+description: "A long-horizon manipulation benchmark targeting System-2 abilities (planning, reflection, memory) with extended subtask sequences in household environments. Tasks/instructions are LLM-generated; trajectories are executed by humans in simulation."
+tasks: [long-horizon, hierarchical-planning, reflection-and-memory]
+metrics: [plan_success, subtask_completion, long_horizon_success]
+robot_config: [fixed-base-arm]
+modality: [RGB, depth, language]
+setting: [sim]
+data_source:
+  size: "large-scale simulated dataset with dense time-segment annotations"
+  collection_method: "both"
+resources:
+  homepage: ""
+  paper: "https://arxiv.org/abs/2506.06677"
+  code: ""
+  data: ""
+leaderboard: ""

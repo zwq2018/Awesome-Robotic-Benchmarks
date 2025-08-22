@@ -1,0 +1,20 @@
+name: RoboTwin
+domain: Manipulation
+subtype: dual-arm
+first_release_date: 2024-09-05
+
+description: "A generative digital-twin data generator and benchmark for bimanual (dual-arm) manipulation, using 3D generative models and LLMs to create diverse expert datasets and evaluation scenarios. RoboTwin 2.0 expands object libraries and unifies dual-arm evaluation."
+tasks: [bimanual-coordination, object-rearrangement, assembly-like-tasks]
+metrics: [success_rate, subtask_completion, robustness_to_variation]
+robot_config: [dual-arm, fixed-base, mobile-manipulator]
+modality: [RGB, depth, proprioceptive, language]
+setting: [sim]
+data_source:
+  size: "large object library; scalable generated trajectories"
+  collection_method: "synthetic"
+resources:
+  homepage: "https://robotwin-platform.github.io/"
+  paper: "https://arxiv.org/abs/2409.02920"
+  code: ""
+  data: "https://robotwin-platform.github.io/"
+leaderboard: ""

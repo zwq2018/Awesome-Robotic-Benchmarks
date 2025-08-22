@@ -1,0 +1,20 @@
+name: VLABench
+domain: Manipulation
+subtype: table-top
+first_release_date: 2024-12-31
+
+description: "A large-scale benchmark for language-conditioned manipulation with long-horizon reasoning: 100 task categories with strong randomization and 2,000+ objects. Evaluates both interactive VLA policies and non-interactive VLM reasoning."
+tasks: [language-conditioned, primitive-and-composite, long-horizon-reasoning]
+metrics: [success_rate, progress_score, action_sequence_match_score]
+robot_config: [fixed-base-arm]
+modality: [RGB, depth, language]
+setting: [sim]
+data_source:
+  size: "training data provided; automated framework using heuristic skills & priors"
+  collection_method: "motion_planner"
+resources:
+  homepage: "https://vlabench.github.io/"
+  paper: "https://arxiv.org/abs/2412.18194"
+  code: "https://github.com/OpenMOSS/VLABench"
+  data: "https://vlabench.github.io/"   # link-out to dataset (HF)
+leaderboard: "https://vlabench.github.io/"  # 'coming soon' per site
