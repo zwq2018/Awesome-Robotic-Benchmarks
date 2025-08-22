@@ -125,8 +125,8 @@ def build_readme(df: pd.DataFrame):
         "Counts (tasks / metrics / robot configs) are recorded as numbers; modalities are listed in detail; "
         "SIM shows the simulator backend (e.g., CoppeliaSim, SAPIEN, MuJoCo).\n\n"
         "human_teleoperation — trajectories recorded from a human controlling the robot/simulator (e.g., teleop, VR).\n\n"
-        "motion_planner — trajectories generated/executed by a planner/IK/trajectory optimizer (e.g., MoveIt, RRT, CHOMP). Pros: physically feasible, repeatable “expert” demos. Cons: limited diversity; struggles with contact-rich quirks.\n\n"
-        "synthetic — trajectories or episodes created programmatically or by generative scripts/LLMs without a physics-aware planner or human. Pros: massive scale, high variety. Cons: feasibility not guaranteed; may ignore dynamics.\n\n"
+        "motion_planner — trajectories generated/executed by a planner/IK/trajectory optimizer (e.g., MoveIt, RRT, CHOMP).\n\n"
+        "synthetic — trajectories or episodes created programmatically or by generative scripts/LLMs without a physics-aware planner or human.\n\n"
         "NOTE: currently this repo is underdevelopment, any pr is welcomed.\n\n"
         "## Domains\n" + toc + "\n\n---\n"
     )
