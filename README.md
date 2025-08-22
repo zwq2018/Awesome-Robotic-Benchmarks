@@ -4,13 +4,17 @@ A curated collection of robotics benchmarks organized by domain with concise, co
 
 Counts (tasks / metrics / robot configs) are recorded as numbers; modalities are listed in detail; SIM shows the simulator backend (e.g., CoppeliaSim, SAPIEN, MuJoCo).
 
-motion.
+human_teleoperation — trajectories recorded from a human controlling the robot/simulator (e.g., teleop, VR).
+
+motion_planner — trajectories generated/executed by a planner/IK/trajectory optimizer (e.g., MoveIt, RRT, CHOMP). Pros: physically feasible, repeatable “expert” demos. Cons: limited diversity; struggles with contact-rich quirks.
+
+synthetic — trajectories or episodes created programmatically or by generative scripts/LLMs without a physics-aware planner or human. Pros: massive scale, high variety. Cons: feasibility not guaranteed; may ignore dynamics.
 
 NOTE: currently this repo is underdevelopment, any pr is welcomed.
 
 ## Domains
 - [Manipulation](#manipulation)
-- [Generalist](#generalist)
+- [Generalist)](#generalist)
 - [Navigation/SLAM](#navigation-slam)
 
 ---
@@ -54,8 +58,8 @@ NOTE: currently this repo is underdevelopment, any pr is welcomed.
 | RLBench | table-top | 100 | 1 (task success rate) | 1 | RGB, depth, segmentation, proprioceptive | CoppeliaSim (V-REP) | motion_planner | 100 tasks × infinite demos (motion planner can generate unlimited trajectories) |
 | CALVIN | table-top | 34 | 1 (primary metric: success rate) | 1 | RGB, depth, proprioceptive, language, tactile | PyBullet | human_teleoperation | Hours of teleoperated play data (20K language instructions); 4 environments (A–D) with ~23K trajectories for training |
 | LIBERO | table-top | 130 | 4 | 3 | RGB, depth, proprioceptive, language | RoboSuite (MuJoCo) | human_teleoperation | 130+ tasks, 2500+ demonstrations |
-| RoboCasa | mobile-manipulation (household) | 100 (25 atomic + 75 composite) | 1 (success rate for task completion) | 3 (supports single-arm mobiles, humanoids, quadruped-with-arm) | - | PhysX (NVIDIA Omniverse) | both | 100+K demonstration trajectories (e.g. 50 human demos ×25 skills + 72K generated) |
-| RoboTwin | dual-arm | 50 | 1 (task success rate) | 1 | - | Custom (generative pipeline with spatial planner; real robot: COBOT Magic) | both | Synthetic dataset (hundreds of expert demos) + limited real demos per task |
+| RoboCasa | mobile-manipulation (household) | 100 (25 atomic + 75 composite) | 1 (success rate for task completion) | 3 (supports single-arm mobiles, humanoids, quadruped-with-arm) | RGB, proprioceptive | PhysX (NVIDIA Omniverse) | both | 100+K demonstration trajectories (e.g. 50 human demos ×25 skills + 72K generated) |
+| RoboTwin | dual-arm | 50 | 1 (task success rate) | 1 | RGB, depth, language | Custom (generative pipeline with spatial planner; real robot: COBOT Magic) | both | Synthetic dataset (hundreds of expert demos) + limited real demos per task |
 | VLABench | table-top | 100 | 2 | 1 | RGB, language | MuJoCo (dm_control) | synthetic | not specified |
 | RoboCerebra | table-top | 1,000 training tasks + 60 held-out tasks (1,060 total) | 2 (sequence success rate and subtask completion) | 1 | RGB, language, proprioceptive | Not specified (custom sim with human teleoperation for data) | both | 100k+ trajectories (e.g. 50 human demos ×25 skills + synthetic expansions) |
 
