@@ -4,6 +4,10 @@ A curated collection of robotics benchmarks organized by domain with concise, co
 
 Counts (tasks / metrics / robot configs) are recorded as numbers; modalities are listed in detail; SIM shows the simulator backend (e.g., CoppeliaSim, SAPIEN, MuJoCo).
 
+motion.
+
+NOTE: currently this repo is underdevelopment, any pr is welcomed.
+
 ## Domains
 - [Manipulation](#manipulation)
 - [Generalist)](#generalist)
@@ -29,11 +33,11 @@ Counts (tasks / metrics / robot configs) are recorded as numbers; modalities are
 
 - **RoboCasa** (2024): A large-scale simulation framework for generalist household robots, focusing on diverse kitchen environments.
   
-  *Resources*: [Paper](https://arxiv.org/abs/2406.02523) | [Website](https://robocasa.ai ) | [Code](https://github.com/robcasa-team/robocasa (coming soon)) | [Data](Available on project website (human + generated demos))
+  *Resources*: [Paper](https://arxiv.org/abs/2406.02523) | [Website](https://robocasa.ai ) | [Code](https://github.com/robocasa/robocasa (coming soon)) | [Data](NA)
 
 - **RoboTwin** (2024): A dual-arm manipulation benchmark and data-generation framework that uses generative 3D models and LLMs to create diverse bimanual task scenarios. RoboTwin provides a real-to-sim “digital twin” pipeline to generate varied object models and expert demonstrations, and an evaluation platform aligned with a real dual-arm robot (COBOT Magic platform). It combines simulated expert data with real-world teleoperated demos for coordinated two-arm tasks.
   
-  *Resources*: [Paper](https://arxiv.org/abs/2409.02920 ) | [Website](https://robotwin-benchmark.github.io) | [Code](https://github.com/RoboTwin-Platform/RoboTwin) | [Data](https://github.com/RoboTwin-Platform/RoboTwin/tree/main/data (simulated & real data))
+  *Resources*: [Paper](https://arxiv.org/abs/2409.02920 ) | [Website](https://robotwin-platform.github.io/) | [Code](https://github.com/RoboTwin-Platform/RoboTwin) | [Data](https://github.com/RoboTwin-Platform/RoboTwin/tree/main/data (simulated & real data))
 
 - **VLABench** (2024): Language-conditioned manipulation benchmark with 100 categories emphasizing long-horizon reasoning and world knowledge.
   
@@ -47,13 +51,13 @@ Counts (tasks / metrics / robot configs) are recorded as numbers; modalities are
 
 | Benchmark | Subtype | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |
 |---|---|---:|---:|---:|---|---|---|---|
-| RLBench | table-top | 100 | 1 (task success rate) | 1 | - | CoppeliaSim (V-REP) | motion_planner | 100 tasks × infinite demos (motion planner can generate unlimited trajectories) |
-| CALVIN | table-top | 34 | 1 (primary metric: success rate) | 1 | - | PyBullet | human_teleoperation | Hours of teleoperated play data (20K language instructions); 4 environments (A–D) with ~23K trajectories for training |
+| RLBench | table-top | 100 | 1 (task success rate) | 1 | RGB, depth, segmentation, proprioceptive | CoppeliaSim (V-REP) | motion_planner | 100 tasks × infinite demos (motion planner can generate unlimited trajectories) |
+| CALVIN | table-top | 34 | 1 (primary metric: success rate) | 1 | RGB, depth, proprioceptive, language, tactile | PyBullet | human_teleoperation | Hours of teleoperated play data (20K language instructions); 4 environments (A–D) with ~23K trajectories for training |
 | LIBERO | table-top | 130 | 4 | 3 | RGB, depth, proprioceptive, language | RoboSuite (MuJoCo) | human_teleoperation | 130+ tasks, 2500+ demonstrations |
 | RoboCasa | mobile-manipulation (household) | 100 (25 atomic + 75 composite) | 1 (success rate for task completion) | 3 (supports single-arm mobiles, humanoids, quadruped-with-arm) | - | PhysX (NVIDIA Omniverse) | both | 100+K demonstration trajectories (e.g. 50 human demos ×25 skills + 72K generated) |
-| RoboTwin | dual-arm | ~14 (diverse dual-arm tasks used for benchmarking) | 1 (task success rate) | 1 | - | Custom (generative pipeline with spatial planner; real robot: COBOT Magic) | both | Synthetic dataset (hundreds of expert demos) + limited real demos per task |
+| RoboTwin | dual-arm | 50 | 1 (task success rate) | 1 | - | Custom (generative pipeline with spatial planner; real robot: COBOT Magic) | both | Synthetic dataset (hundreds of expert demos) + limited real demos per task |
 | VLABench | table-top | 100 | 2 | 1 | RGB, language | MuJoCo (dm_control) | synthetic | not specified |
-| RoboCerebra | table-top | 1,000 training tasks + 60 held-out tasks (1,060 total) | 2 (sequence success rate and subtask completion) | 1 | - | Not specified (custom sim with human teleoperation for data) | both | 100k+ trajectories (e.g. 50 human demos ×25 skills + synthetic expansions) |
+| RoboCerebra | table-top | 1,000 training tasks + 60 held-out tasks (1,060 total) | 2 (sequence success rate and subtask completion) | 1 | RGB, language, proprioceptive | Not specified (custom sim with human teleoperation for data) | both | 100k+ trajectories (e.g. 50 human demos ×25 skills + synthetic expansions) |
 
 
 ## Generalist)
@@ -68,7 +72,7 @@ Counts (tasks / metrics / robot configs) are recorded as numbers; modalities are
 
 | Benchmark | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |
 |---|---:|---:|---:|---|---|---|---|
-| EmbodiedBench | 1128 (testing tasks across 4 envs) | 2 (e.g., success rate and subgoal success) | 4 | - | Multiple – AI2-THOR (Unity) for EB-ALFRED, Habitat-Sim for EB-Habitat/Navigation, and a robotics simulator for EB-Manipulation | both (uses existing human-collected and synthetic tasks) | 1,128 evaluation scenarios (drawn from ALFRED, Habitat, etc.) |
+| EmbodiedBench | 1128 (testing tasks across 4 envs) | 2 (e.g., success rate and subgoal success) | 4 | RGB, language | Multiple – AI2-THOR (Unity) for EB-ALFRED, Habitat-Sim for EB-Habitat/Navigation, and a robotics simulator for EB-Manipulation | both (uses existing human-collected and synthetic tasks) | 1,128 evaluation scenarios (drawn from ALFRED, Habitat, etc.) |
 
 
 ## Navigation/SLAM
