@@ -1,0 +1,25 @@
+name: ALFRED
+domain: Navigation
+subtype: "navigation+manipulation"
+first_release_date: 2020-06-01
+
+description: "Household instruction-following benchmark that maps egocentric vision + language to action sequences in AI2-THOR."
+
+task_count: 7
+metric_count: 2
+robot_config_count: 1
+
+modality: [RGB, depth, semantic, language]
+setting: [sim]
+sim_backend: "AI2-THOR 2.0"
+
+data_source:
+  size: "25,743 directives; 8,055 expert demos"
+  collection_method: "both"
+
+resources:
+  homepage: "https://askforalfred.com/"
+  paper: "https://openaccess.thecvf.com/content_CVPR_2020/papers/Shridhar_ALFRED_A_Benchmark_for_Interpreting_Grounded_Instructions_for_Everyday_Tasks_CVPR_2020_paper.pdf"
+  code: "https://github.com/askforalfred/alfred"
+  data: "https://github.com/askforalfred/alfred-data"
+  leaderboard: "https://leaderboard.allenai.org/alfred"

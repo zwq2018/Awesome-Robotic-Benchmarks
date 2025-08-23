@@ -1,0 +1,25 @@
+name: AI2-THOR
+domain: Navigation
+subtype: "navigation+manipulation"
+first_release_date: 2017-12-14
+
+description: "Open-source Unity-based embodied AI platform with interactive indoor scenes; supports navigation (iTHOR/RoboTHOR) and manipulation (ManipulaTHOR)."
+
+# Platform card (no fixed benchmark spec), so counts set to 0
+task_count: 'N/A'
+metric_count: 'N/A'
+robot_config_count: 2  
+modality: [RGB, depth, semantic]
+setting: [sim]
+sim_backend: "Unity 3D"
+
+data_source:
+  size: "iTHOR: 120 rooms; 2000+ objects; RoboTHOR: sim-real apartments"
+  collection_method: "synthetic"
+
+resources:
+  homepage: "https://ai2thor.allenai.org/"
+  paper: "https://arxiv.org/abs/1712.05474"
+  code: "https://github.com/allenai/ai2thor"
+  data: "https://ai2thor.allenai.org/robothor/cvpr-2021-challenge/"
+  leaderboard: ""

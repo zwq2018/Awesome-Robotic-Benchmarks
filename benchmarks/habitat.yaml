@@ -1,0 +1,24 @@
+name: Habitat Navigation (PointNav/ObjectNav/ImageNav)
+domain: Navigation
+first_release_date: 2019-10-27
+
+description: "Photoreal embodied navigation benchmarks (PointNav, ObjectNav, ImageNav) run in Habitat-Sim with standard metrics like Success and SPL."
+
+task_count: 3          # PointNav, ObjectNav, ImageNav
+metric_count: 2        # Success, SPL (common in challenges)
+robot_config_count: 1  # single mobile agent in sim
+
+modality: [RGB, depth, semantic]
+setting: [sim]
+sim_backend: "Habitat-Sim"
+
+data_source:
+  size: "large-scale episodes from HM3D/MP3D/Gibson splits (varies by year)"
+  collection_method: "synthetic"
+
+resources:
+  homepage: "https://aihabitat.org/"
+  paper: "https://arxiv.org/abs/1904.01201"
+  code: "https://github.com/facebookresearch/habitat-challenge"
+  data: "https://github.com/facebookresearch/habitat-challenge#dataset"
+  leaderboard: "https://aihabitat.org/challenge/"

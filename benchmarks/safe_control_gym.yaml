@@ -1,0 +1,23 @@
+name: safe-control-gym
+domain: Safety
+subtype: ""
+first_release_date: 2021-09-13
+
+description: "Unified safe learning-based control suite with constraints/disturbances on cart-pole and quadrotor systems."
+
+task_count: 2
+metric_count: 3
+robot_config_count: 3
+
+modality: [proprioceptive]
+setting: [sim]
+sim_backend: "PyBullet"
+
+data_source:
+  size: "N/A (simulated training/eval)"
+  collection_method: "synthetic"
+
+resources:
+  homepage: "https://utiasdsl.github.io/safe-control-gym/"
+  paper: "https://arxiv.org/abs/2109.06325"
+  code: "https://github.com/utiasDSL/safe-control-gym"

@@ -1,0 +1,24 @@
+name: D4RL
+domain: Other
+subtype: "Offline-RL"
+first_release_date: 2020-04-15
+
+description: "Offline RL benchmark with standardized environments and fixed datasets across multiple domains."
+
+task_count: 50
+metric_count: 1
+robot_config_count: 6
+
+modality: [proprioceptive, RGB, lidar]
+setting: [sim]
+sim_backend: "Multiple (MuJoCo, PyBullet, MiniGrid)"
+
+data_source:
+  size: "Multiple task-specific datasets"
+  collection_method: "both"
+
+resources:
+  homepage: "https://sites.google.com/view/d4rl/home"
+  paper: "https://arxiv.org/abs/2004.07219"
+  code: "https://github.com/Farama-Foundation/D4RL"
+  data: "https://github.com/Farama-Foundation/D4RL#datasets"

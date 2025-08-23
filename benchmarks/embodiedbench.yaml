@@ -1,5 +1,5 @@
 name: EmbodiedBench
-domain: Generalist)
+domain: Generalist
 subtype: N/A
 first_release_date: 2025-02-13
 description: "A comprehensive benchmark to evaluate vision-driven embodied agents (multi-modal LLM-based) across both high-level and low-level task. EmbodiedBench spans four simulated environments – EB-ALFRED and EB-Habitat (high-level household tasks), and EB-Navigation and EB-Manipulation (low-level navigation and robotic manipulation) – comprising 1,128 diverse test instances in total. It also defines six capability-oriented evaluation subsets to assess commonsense reasoning, complex instruction understanding, spatial awareness, visual perception, long-horizon planning, etc."

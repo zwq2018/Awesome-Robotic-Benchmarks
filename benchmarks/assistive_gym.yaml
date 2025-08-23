@@ -1,0 +1,22 @@
+name: Assistive Gym
+domain: HRI
+subtype: ""
+first_release_date: 2019-10-10
+
+description: "Physics-based assistive robotics framework with human models and ADL tasks for safe robot assistance."
+
+task_count: 6
+metric_count: 1
+robot_config_count: 4
+
+modality: [proprioceptive, RGB]
+setting: [sim]
+sim_backend: "PyBullet"
+
+data_source:
+  size: "N/A"
+  collection_method: "N/A"
+
+resources:
+  paper: "https://arxiv.org/abs/1910.04700"
+  code: "https://github.com/Healthcare-Robotics/assistive-gym"

@@ -1,18 +1,25 @@
 name: KITTI
-domain: Navigation/SLAM
-first_release_date: 2012-03-01
-tasks: [stereo, optical-flow, visual-odometry, SLAM]
-modality: [RGB, lidar, GPS/IMU]
+domain: Navigation
+subtype: ""
+first_release_date: 2012-04-01
+
+description: "Large-scale real-world autonomous driving dataset and benchmark suite for perception and odometry."
+
+task_count: 8
+metric_count: 8
+robot_config_count: 1
+
+modality: [RGB, lidar, GPS_IMU]
 setting: [real]
-metrics: [ATE, RPE, flow-EPE, stereo-error]
+sim_backend: ""
+
+data_source:
+  size: "Varies by task; multi-sensor vehicle platform"
+  collection_method: "human_teleoperation"
+
 resources:
-  homepage: "http://www.cvlibs.net/datasets/kitti/"
-  paper: "https://doi.org/10.1109/CVPR.2012.6248074"
-  code: ""
-  data: "http://www.cvlibs.net/datasets/kitti/"
-strengths: |
-  Real-world outdoor driving; widely adopted; long sequences.
-limitations: |
-  Narrow domain (driving); older sensors; limited weather variation.
-notes: |
-  Ensure you report sequence splits and evaluation server settings.
+  homepage: "https://www.cvlibs.net/datasets/kitti/"
+  paper: "https://www.cvlibs.net/publications/Geiger2012CVPR.pdf"
+  data: "https://www.cvlibs.net/datasets/kitti/"
+  leaderboard: "https://www.cvlibs.net/datasets/kitti/eval.php"
+

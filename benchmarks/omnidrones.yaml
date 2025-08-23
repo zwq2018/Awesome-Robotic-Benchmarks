@@ -1,0 +1,23 @@
+name: OmniDrones
+domain: Locomotion
+subtype: ""
+first_release_date: 2023-01-01
+
+description: "GPU-accelerated drone RL benchmark with diverse tasks, multiple UAV models, and multi-sensor suites."
+
+task_count: 10
+metric_count: 2
+robot_config_count: 4
+
+modality: [RGB, depth, IMU, proprioceptive, lidar]
+setting: [sim]
+sim_backend: "NVIDIA Omniverse Isaac Sim (PhysX)"
+
+data_source:
+  size: "N/A (simulated training/eval)"
+  collection_method: "unknown"
+
+resources:
+  homepage: "https://omnidrones-sim.github.io/"
+  paper: "https://arxiv.org/abs/2303.04796"
+  code: "https://github.com/omnidrones/omnidrones"
