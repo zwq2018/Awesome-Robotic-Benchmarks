@@ -1,0 +1,13 @@
+name: Genesis
+domain: Simulation
+description: "GPU-accelerated universal simulator with photorealistic rendering; targets high-throughput robot learning."
+first_release_date: "2024-12-24"
+physics_engine: "Genesis (rigid/soft fluids)"
+renderer: "Photorealistic rasterization + ray tracing"
+gpu_support: true
+os: ["Linux", "Windows", "macOS"]
+license: "Apache-2.0"
+resources:
+  homepage: "https://genesis-embodied-ai.github.io"
+  code: "https://github.com/Genesis-Embodied-AI/Genesis"
+  docs: "https://genesis-embodied-ai.readthedocs.io"

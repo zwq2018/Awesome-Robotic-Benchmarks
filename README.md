@@ -4,6 +4,8 @@ A curated collection of robotics benchmarks organized by domain with concise, co
 
 Counts (tasks / metrics / robot configs) are recorded as numbers; modalities are listed in detail; SIM shows the simulator backend (e.g., CoppeliaSim, SAPIEN, MuJoCo).
 
+_For the **Simulation** domain, the summary table compares capabilities: physics engine, renderer, GPU support, OS, real-time, multi-agent, and license._
+
 human_teleoperation — trajectories recorded from a human controlling the robot/simulator (e.g., teleop, VR).
 
 motion_planner — trajectories generated/executed by a planner/IK/trajectory optimizer (e.g., MoveIt, RRT, CHOMP).
@@ -14,6 +16,8 @@ NOTE: currently this repo is underdevelopment, any pr is welcomed.
 
 ## Domains
 - [Manipulation](#manipulation)
+- [Simulation](#simulation)
+- [Other](#other)
 - [Generalist)](#generalist)
 - [Navigation/SLAM](#navigation-slam)
 
@@ -59,9 +63,98 @@ NOTE: currently this repo is underdevelopment, any pr is welcomed.
 | CALVIN | table-top | 34 | 1 (primary metric: success rate) | 1 | RGB, depth, proprioceptive, language, tactile | PyBullet | human_teleoperation | Hours of teleoperated play data (20K language instructions); 4 environments (A–D) with ~23K trajectories for training |
 | LIBERO | table-top | 130 | 4 | 3 | RGB, depth, proprioceptive, language | RoboSuite (MuJoCo) | human_teleoperation | 130+ tasks, 2500+ demonstrations |
 | RoboCasa | mobile-manipulation (household) | 100 (25 atomic + 75 composite) | 1 (success rate for task completion) | 3 (supports single-arm mobiles, humanoids, quadruped-with-arm) | RGB, proprioceptive | PhysX (NVIDIA Omniverse) | both | 100+K demonstration trajectories (e.g. 50 human demos ×25 skills + 72K generated) |
-| RoboTwin | dual-arm | 50 | 1 (task success rate) | 1 | RGB, depth, language | Custom (generative pipeline with spatial planner; real robot: COBOT Magic) | both | Synthetic dataset (hundreds of expert demos) + limited real demos per task |
+| RoboTwin | dual-arm | 50 | 1 (task success rate) | 1 | RGB, depth, language | sapien | both | Synthetic dataset (hundreds of expert demos) + limited real demos per task |
 | VLABench | table-top | 100 | 2 | 1 | RGB, language | MuJoCo (dm_control) | synthetic | not specified |
 | RoboCerebra | table-top | 1,000 training tasks + 60 held-out tasks (1,060 total) | 2 (sequence success rate and subtask completion) | 1 | RGB, language, proprioceptive | Not specified (custom sim with human teleoperation for data) | both | 100k+ trajectories (e.g. 50 human demos ×25 skills + synthetic expansions) |
+
+
+## Simulation
+
+**6 benchmarks**
+
+- **MuJoCo** (2012): A fast, accurate physics engine for rigid-body simulation in robotics and control.
+  
+  *Resources*: [Paper](https://arxiv.org/abs/2106.02653) | [Website](https://mujoco.org/) | [Code](https://github.com/google-deepmind/mujoco)
+
+- **SAPIEN** (2020): Physics-rich robotics simulator with Vulkan renderer and PhysX 5, optimized for large-scale data generation.
+  
+  *Resources*: [Paper](https://openaccess.thecvf.com/content_CVPR_2020/papers/Xiang_SAPIEN_A_SimulAted_Part-Based_Interactive_ENvironment_CVPR_2020_paper.pdf) | [Website](https://sapien.ucsd.edu/) | [Code](https://github.com/haosulab/SAPIEN)
+
+- **Genesis** (2024): GPU-accelerated universal simulator with photorealistic rendering; targets high-throughput robot learning.
+  
+  *Resources*: [Website](https://genesis-embodied-ai.github.io) | [Code](https://github.com/Genesis-Embodied-AI/Genesis)
+
+- **Gazebo**: Modular, open-source robotics simulator with pluggable physics and rendering backends.
+  
+  *Resources*: [Website](https://gazebosim.org) | [Code](https://github.com/gazebosim/gz-sim)
+
+- **Isaac Lab**: Open-source robot learning framework built on NVIDIA Isaac Sim (PhysX + RTX).
+  
+  *Resources*: [Website](https://developer.nvidia.com/isaac/lab) | [Code](https://github.com/isaac-sim/IsaacLab)
+
+- **PyBullet**: Pythonic interface to Bullet physics; lightweight, widely used for robotics RL research.
+  
+  *Resources*: [Website](https://pybullet.org) | [Code](https://github.com/bulletphysics/bullet3)
+
+### Summary Comparison
+
+| Simulation | Physics Engine | Renderer | GPU Support | OS | Real-Time | Multi-Agent | License |
+|---|---|---|:---:|---|:---:|:---:|---|
+| MuJoCo | MuJoCo | OpenGL | ✓ | Linux, Windows, macOS | ✓ | ✓ | Apache-2.0 |
+| SAPIEN | NVIDIA PhysX 5 (CPU/GPU) | Vulkan-based (SapienRenderer), ray tracing | ✓ | Linux | - | - | MIT |
+| Genesis | Genesis (rigid/soft fluids) | Photorealistic rasterization + ray tracing | ✓ | Linux, Windows, macOS | - | - | Apache-2.0 |
+| Gazebo | Plugins: DART (ref), Bullet, ODE, TPE; Chrono via plugin | gz-rendering (OGRE/OGRE2; OptiX experimental) | ✓ | Linux, Windows, macOS | - | - | Apache-2.0 |
+| Isaac Lab | NVIDIA PhysX 5 (via Isaac Sim) | NVIDIA Omniverse RTX / path tracing | ✓ | Linux, Windows | - | - | BSD-3-Clause (Isaac Lab); Isaac Sim: Apache-2.0 repo + NVIDIA Omniverse EULA |
+| PyBullet | Bullet (rigid/soft body) | OpenGL visualizer; TinyRenderer (CPU) | — | Linux, Windows, macOS | - | - | zlib |
+
+
+## Other
+
+**13 benchmarks**
+
+- ****: 
+
+- ****: 
+
+- ****: 
+
+- ****: 
+
+- ****: 
+
+- ****: 
+
+- ****: 
+
+- ****: 
+
+- ****: 
+
+- ****: 
+
+- ****: 
+
+- ****: 
+
+- ****: 
+
+### Summary Comparison
+
+| Benchmark | Subtype | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |
+|---|---|---:|---:|---:|---|---|---|---|
+|  | - |  |  |  | - | - | - | - |
+|  | - |  |  |  | - | - | - | - |
+|  | - |  |  |  | - | - | - | - |
+|  | - |  |  |  | - | - | - | - |
+|  | - |  |  |  | - | - | - | - |
+|  | - |  |  |  | - | - | - | - |
+|  | - |  |  |  | - | - | - | - |
+|  | - |  |  |  | - | - | - | - |
+|  | - |  |  |  | - | - | - | - |
+|  | - |  |  |  | - | - | - | - |
+|  | - |  |  |  | - | - | - | - |
+|  | - |  |  |  | - | - | - | - |
+|  | - |  |  |  | - | - | - | - |
 
 
 ## Generalist)
@@ -74,9 +167,9 @@ NOTE: currently this repo is underdevelopment, any pr is welcomed.
 
 ### Summary Comparison
 
-| Benchmark | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |
-|---|---:|---:|---:|---|---|---|---|
-| EmbodiedBench | 1128 (testing tasks across 4 envs) | 2 (e.g., success rate and subgoal success) | 4 | RGB, language | Multiple – AI2-THOR (Unity) for EB-ALFRED, Habitat-Sim for EB-Habitat/Navigation, and a robotics simulator for EB-Manipulation | both (uses existing human-collected and synthetic tasks) | 1,128 evaluation scenarios (drawn from ALFRED, Habitat, etc.) |
+| Benchmark | Subtype | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |
+|---|---|---:|---:|---:|---|---|---|---|
+| EmbodiedBench | N/A | 1128 (testing tasks across 4 envs) | 2 (e.g., success rate and subgoal success) | 4 | RGB, language | Multiple – AI2-THOR (Unity) for EB-ALFRED, Habitat-Sim for EB-Habitat/Navigation, and a robotics simulator for EB-Manipulation | both (uses existing human-collected and synthetic tasks) | 1,128 evaluation scenarios (drawn from ALFRED, Habitat, etc.) |
 
 
 ## Navigation/SLAM
@@ -89,6 +182,6 @@ NOTE: currently this repo is underdevelopment, any pr is welcomed.
 
 ### Summary Comparison
 
-| Benchmark | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |
-|---|---:|---:|---:|---|---|---|---|
-| KITTI | 4 | 4 |  | RGB, lidar, GPS/IMU | - | - | - |
+| Benchmark | Subtype | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |
+|---|---|---:|---:|---:|---|---|---|---|
+| KITTI | - | 4 | 4 |  | RGB, lidar, GPS/IMU | - | - | - |

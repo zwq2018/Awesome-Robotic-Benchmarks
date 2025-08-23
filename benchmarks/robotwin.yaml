@@ -8,7 +8,7 @@ metric_count: "1 (task success rate)"
 robot_config_count: 1
 modality: [RGB, depth, language]
 setting: [sim, real]
-sim_backend: "Custom (generative pipeline with spatial planner; real robot: COBOT Magic)"
+sim_backend: "sapien"
 data_source:
   size: "Synthetic dataset (hundreds of expert demos) + limited real demos per task"
   collection_method: both

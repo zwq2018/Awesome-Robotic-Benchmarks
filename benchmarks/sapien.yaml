@@ -1,0 +1,14 @@
+name: SAPIEN
+domain: Simulation
+description: "Physics-rich robotics simulator with Vulkan renderer and PhysX 5, optimized for large-scale data generation."
+first_release_date: "2020-06"
+physics_engine: "NVIDIA PhysX 5 (CPU/GPU)"
+renderer: "Vulkan-based (SapienRenderer), ray tracing"
+gpu_support: true
+os: ["Linux"]
+license: "MIT"
+resources:
+  homepage: "https://sapien.ucsd.edu/"
+  code: "https://github.com/haosulab/SAPIEN"
+  docs: "https://sapien-sim.github.io/docs/"
+  paper: "https://openaccess.thecvf.com/content_CVPR_2020/papers/Xiang_SAPIEN_A_SimulAted_Part-Based_Interactive_ENvironment_CVPR_2020_paper.pdf"

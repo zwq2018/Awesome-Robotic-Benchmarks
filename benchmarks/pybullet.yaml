@@ -1,0 +1,13 @@
+name: PyBullet
+domain: Simulation
+description: "Pythonic interface to Bullet physics; lightweight, widely used for robotics RL research."
+first_release_date: ""
+physics_engine: "Bullet (rigid/soft body)"
+renderer: "OpenGL visualizer; TinyRenderer (CPU)"
+gpu_support: false
+os: ["Linux", "Windows", "macOS"]
+license: "zlib"
+resources:
+  homepage: "https://pybullet.org"
+  code: "https://github.com/bulletphysics/bullet3"
+  docs: "https://raw.githubusercontent.com/bulletphysics/bullet3/master/docs/pybullet_quickstartguide.pdf"

@@ -1,0 +1,18 @@
+name: MuJoCo
+domain: Simulation
+description: A fast, accurate physics engine for rigid-body simulation in robotics and control.
+first_release_date: 2012
+
+
+physics_engine: MuJoCo
+renderer: OpenGL
+gpu_support: true
+os: [Linux, Windows, macOS]
+realtime: true
+multi_agent: true
+license: Apache-2.0
+
+resources:
+  homepage: https://mujoco.org/
+  code: https://github.com/google-deepmind/mujoco
+  paper: https://arxiv.org/abs/2106.02653
