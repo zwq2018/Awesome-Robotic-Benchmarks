@@ -1,0 +1,19 @@
+name: Brax
+domain: Locomotion
+first_release_date: 2021-06-24
+description: "JAX-based differentiable physics engine reproducing classic MuJoCo-style tasks for massively parallel training."
+task_count: 5
+metric_count: 1
+robot_config_count: 5
+modality: [proprioceptive]
+setting: [sim]
+sim_backend: "Brax (JAX)"
+data_source:
+  size: "N/A"
+  collection_method: "unknown"
+resources:
+  homepage: "https://github.com/google/brax"
+  paper: "https://arxiv.org/abs/2106.13281"
+  code: "https://github.com/google/brax"
+  data: ""
+  leaderboard: ""

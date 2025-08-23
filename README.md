@@ -4,15 +4,15 @@ A curated collection of robotics benchmarks organized by domain with concise, co
 
 Counts (tasks / metrics / robot configs) are recorded as numbers; modalities are listed in detail; SIM shows the simulator backend (e.g., CoppeliaSim, SAPIEN, MuJoCo).
 
-_For the **Simulation** domain, the summary table compares capabilities: physics engine, renderer, GPU support, OS, real-time, multi-agent, and license._
+_For the **Simulation** domain, the summary table compares capabilities: physics engine, renderer, GPU support, OS, and license._
 
-human_teleoperation — trajectories recorded from a human controlling the robot/simulator (e.g., teleop, VR).
+**human_teleoperation** — trajectories recorded from a human controlling the robot/simulator (e.g., teleop, VR).
 
-motion_planner — trajectories generated/executed by a planner/IK/trajectory optimizer (e.g., MoveIt, RRT, CHOMP).
+**motion_planner** — trajectories generated/executed by a planner/IK/trajectory optimizer (e.g., MoveIt, RRT, CHOMP).
 
-synthetic — trajectories or episodes created programmatically or by generative scripts/LLMs without a physics-aware planner or human.
+**synthetic** — trajectories or episodes created programmatically or by generative scripts/LLMs without a physics-aware planner or human.
 
-NOTE: currently this repo is underdevelopment, any pr is welcomed.
+**NOTE: currently this repo is underdevelopment and **any pr is welcomed**.
 
 ## Domains
 - [Manipulation](#manipulation)
@@ -29,7 +29,7 @@ NOTE: currently this repo is underdevelopment, any pr is welcomed.
 
 - **RLBench** (2019): A large-scale learning environment featuring 100 unique vision-guided manipulation tasks of varying difficulty. RLBench provides multimodal observations (RGB, depth, segmentation, proprioception) from multiple camera angles and an *infinite* supply of demonstration trajectories generated via built-in motion planners.
   
-  *Resources*: [Paper](https://arxiv.org/abs/1909.12271 ) | [Website](https://sites.google.com/view/rlbench ) | [Code](https://github.com/stepjam/RLBench ) | [Data](N/A (demos are generated on-the-fly by simulator))
+  *Resources*: [Paper](https://arxiv.org/abs/1909.12271 ) | [Website](https://sites.google.com/view/rlbench ) | [Code](https://github.com/stepjam/RLBench )
 
 - **CALVIN** (2021): An open-source simulated benchmark for learning long-horizon language-conditioned robot manipulation tasks. It features a Franka Emika Panda arm in four tabletop environments and 34 distinct manipulation tasks with unconstrained language instructions
   
@@ -98,14 +98,14 @@ NOTE: currently this repo is underdevelopment, any pr is welcomed.
 
 ### Summary Comparison
 
-| Simulation | Physics Engine | Renderer | GPU Support | OS | Real-Time | Multi-Agent | License |
-|---|---|---|:---:|---|:---:|:---:|---|
-| MuJoCo | MuJoCo | OpenGL | ✓ | Linux, Windows, macOS | ✓ | ✓ | Apache-2.0 |
-| SAPIEN | NVIDIA PhysX 5 (CPU/GPU) | Vulkan-based (SapienRenderer), ray tracing | ✓ | Linux | - | - | MIT |
-| Genesis | Genesis (rigid/soft fluids) | Photorealistic rasterization + ray tracing | ✓ | Linux, Windows, macOS | - | - | Apache-2.0 |
-| Gazebo | Plugins: DART (ref), Bullet, ODE, TPE; Chrono via plugin | gz-rendering (OGRE/OGRE2; OptiX experimental) | ✓ | Linux, Windows, macOS | - | - | Apache-2.0 |
-| Isaac Lab | NVIDIA PhysX 5 (via Isaac Sim) | NVIDIA Omniverse RTX / path tracing | ✓ | Linux, Windows | - | - | BSD-3-Clause (Isaac Lab); Isaac Sim: Apache-2.0 repo + NVIDIA Omniverse EULA |
-| PyBullet | Bullet (rigid/soft body) | OpenGL visualizer; TinyRenderer (CPU) | — | Linux, Windows, macOS | - | - | zlib |
+| Simulation | Physics Engine | Renderer | GPU Support | OS | License |
+|---|---|---|---:|---:|---|
+| MuJoCo | MuJoCo | OpenGL | ✓ | Linux, Windows, macOS | Apache-2.0 |
+| SAPIEN | NVIDIA PhysX 5 (CPU/GPU) | Vulkan-based (SapienRenderer), ray tracing | ✓ | Linux | MIT |
+| Genesis | Genesis (rigid/soft fluids) | Photorealistic rasterization + ray tracing | ✓ | Linux, Windows, macOS | Apache-2.0 |
+| Gazebo | Plugins: DART (ref), Bullet, ODE, TPE; Chrono via plugin | gz-rendering (OGRE/OGRE2; OptiX experimental) | ✓ | Linux, Windows, macOS | Apache-2.0 |
+| Isaac Lab | NVIDIA PhysX 5 (via Isaac Sim) | NVIDIA Omniverse RTX / path tracing | ✓ | Linux, Windows | BSD-3-Clause (Isaac Lab); Isaac Sim: Apache-2.0 repo + NVIDIA Omniverse EULA |
+| PyBullet | Bullet (rigid/soft body) | OpenGL visualizer; TinyRenderer (CPU) | — | Linux, Windows, macOS | zlib |
 
 
 ## Other

@@ -64,8 +64,6 @@ def load_entries():
         renderer = entry.get("renderer", "")
         gpu_support = entry.get("gpu_support", None)          # bool preferred
         os_field = entry.get("os", [])                        # list or str
-        realtime = entry.get("realtime", None)                # bool preferred
-        multi_agent = entry.get("multi_agent", None)          # bool preferred
         license_field = entry.get("license", "")
 
         rows.append({
@@ -99,8 +97,6 @@ def load_entries():
             "renderer": renderer,
             "gpu_support": gpu_support,
             "os": os_field,
-            "realtime": realtime,
-            "multi_agent": multi_agent,
             "license": license_field,
         })
     return pd.DataFrame(rows)
@@ -118,8 +114,8 @@ def make_summary_table(domain_df: pd.DataFrame, domain_name: str) -> str:
         sep  = "|---|---|---:|---:|---:|---|---|---|---|"
     else:
         # Capability-focused comparison for simulators
-        head = "| Simulation | Physics Engine | Renderer | GPU Support | OS | Real-Time | Multi-Agent | License |"
-        sep  = "|---|---|---|:---:|---|:---:|:---:|---|"
+        head = "| Simulation | Physics Engine | Renderer | GPU Support | OS | License |"
+        sep  = "|---|---|---|---:|---:|---|"
 
     lines = [head, sep]
 
@@ -148,8 +144,6 @@ def make_summary_table(domain_df: pd.DataFrame, domain_name: str) -> str:
                 r.get('renderer') or "-",
                 fmt_bool(r.get('gpu_support')),
                 os_cell,
-                fmt_bool(r.get('realtime')),
-                fmt_bool(r.get('multi_agent')),
                 r.get('license') or "-",
             ]
         lines.append("| " + " | ".join(cells) + " |")
@@ -168,11 +162,11 @@ def build_readme(df: pd.DataFrame):
         "A curated collection of robotics benchmarks organized by domain with concise, comparable tables.\n\n"
         "Counts (tasks / metrics / robot configs) are recorded as numbers; modalities are listed in detail; "
         "SIM shows the simulator backend (e.g., CoppeliaSim, SAPIEN, MuJoCo).\n\n"
-        "_For the **Simulation** domain, the summary table compares capabilities: physics engine, renderer, GPU support, OS, real-time, multi-agent, and license._\n\n"
-        "human_teleoperation — trajectories recorded from a human controlling the robot/simulator (e.g., teleop, VR).\n\n"
-        "motion_planner — trajectories generated/executed by a planner/IK/trajectory optimizer (e.g., MoveIt, RRT, CHOMP).\n\n"
-        "synthetic — trajectories or episodes created programmatically or by generative scripts/LLMs without a physics-aware planner or human.\n\n"
-        "NOTE: currently this repo is underdevelopment, any pr is welcomed.\n\n"
+        "_For the **Simulation** domain, the summary table compares capabilities: physics engine, renderer, GPU support, OS, and license._\n\n"
+        "**human_demonstration** — trajectories recorded from a human controlling the robot/simulator (e.g., teleop, VR).\n\n"
+        "**motion_planner** — trajectories generated/executed by a planner/IK/trajectory optimizer (e.g., MoveIt, RRT, CHOMP).\n\n"
+        "**synthetic** — trajectories or episodes created programmatically or by generative scripts/LLMs without a physics-aware planner or human.\n\n"
+        "**NOTE: currently this repo is underdevelopment and **any pr is welcomed**.\n\n"
         "## Domains\n" + toc + "\n\n---\n"
     )
 

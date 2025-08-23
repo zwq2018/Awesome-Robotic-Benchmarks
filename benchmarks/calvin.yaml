@@ -11,10 +11,9 @@ setting: [sim]
 sim_backend: "PyBullet"
 data_source:
   size: "Hours of teleoperated play data (20K language instructions); 4 environments (A–D) with ~23K trajectories for training"
-  collection_method: human_teleoperation
+  collection_method: human_demonstration
 resources:
   homepage: "https://calvin.cs.uni-freiburg.de (offline, see GitHub)"
   paper: "https://arxiv.org/abs/2112.03227 "
   code: "https://github.com/mees/calvin "
   data: "https://github.com/mees/calvin/tree/main/dataset (download scripts)"
-  leaderboard: "N/A"

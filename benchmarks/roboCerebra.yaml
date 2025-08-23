@@ -8,13 +8,11 @@ metric_count: "2 (sequence success rate and subtask completion)"
 robot_config_count: 1
 modality: [RGB, language, proprioceptive]
 setting: [sim]
-sim_backend: "Not specified (custom sim with human teleoperation for data)"
+sim_backend: "RoboSuite (MuJoCo)"
 data_source:
   size: "100k+ trajectories (e.g. 50 human demos ×25 skills + synthetic expansions)"
   collection_method: both
 resources:
-  homepage: "https://robocerebra.github.io (if available)"
+  homepage: "https://robocerebra.github.io"
   paper: "https://arxiv.org/abs/2506.06677"
-  code: "NA"
   data: "https://huggingface.co/datasets/qiukingballball/RoboCerebra "
-  leaderboard: "N/A"

@@ -16,5 +16,4 @@ resources:
   homepage: "https://sites.google.com/view/rlbench "
   paper: "https://arxiv.org/abs/1909.12271 "
   code: "https://github.com/stepjam/RLBench "
-  data: "N/A (demos are generated on-the-fly by simulator)"
-  leaderboard: "N/A"
+

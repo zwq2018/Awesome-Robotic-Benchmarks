@@ -1,0 +1,19 @@
+name: Meta-World
+domain: Manipulation
+subtype: table-top
+first_release_date: 2019-10-24
+description: "Open-source benchmark of diverse single-arm tabletop manipulation tasks for multi-task and meta-RL."
+task_count: 50
+metric_count: 1
+robot_config_count: 1
+modality: [proprioceptive]
+setting: [sim]
+sim_backend: "MuJoCo"
+data_source:
+  size: "N/A"
+  collection_method: "unknown"
+resources:
+  homepage: "https://meta-world.github.io/"
+  paper: "https://arxiv.org/abs/1910.10897"
+  code: "https://github.com/Farama-Foundation/Metaworld"
+

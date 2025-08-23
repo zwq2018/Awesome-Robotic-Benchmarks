@@ -5,20 +5,19 @@ first_release_date: 2023-10-01
 
 description: "A benchmark for lifelong robot learning featuring multitask manipulation with language conditioning. Focuses on knowledge transfer and generalization across diverse manipulation tasks."
 
-# Only record counts below
 task_count: 130
 metric_count: 4
 robot_config_count: 3
 
-# Keep modality in detail
+
 modality: [RGB, depth, proprioceptive, language]
 
 setting: [sim, real]
-sim_backend: "RoboSuite (MuJoCo)"  # LIBERO is built on RoboSuite/MuJoCo. :contentReference[oaicite:0]{index=0}
+sim_backend: "RoboSuite (MuJoCo)"  
 
 data_source:
   size: "130+ tasks, 2500+ demonstrations"
-  collection_method: "human_teleoperation"
+  collection_method: "human_demonstration"
 
 resources:
   homepage: "https://libero-project.github.io/"

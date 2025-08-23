@@ -29,4 +29,3 @@ resources:
   paper: "https://arxiv.org/abs/2412.18194"
   code: "https://github.com/OpenMOSS/VLABench"
   data: "https://vlabench.github.io/"
-  leaderboard: ""

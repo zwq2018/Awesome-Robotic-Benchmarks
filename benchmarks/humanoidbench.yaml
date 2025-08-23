@@ -1,0 +1,18 @@
+name: HumanoidBench
+domain: Locomotion
+subtype: humanoid, whole-body
+first_release_date: 2024-03-15
+description: "Simulated humanoid benchmark with dexterous hands spanning whole-body manipulation and locomotion; designed for high-DoF control research."
+task_count: 27
+metric_count: 1
+robot_config_count: 4
+modality: [proprioceptive, RGB, tactile]
+setting: [sim]
+sim_backend: "MuJoCo"
+data_source:
+  size: "N/A"
+  collection_method: "unknown"
+resources:
+  homepage: "https://humanoid-bench.github.io/"
+  paper: "https://arxiv.org/abs/2403.10506"
+  code: "https://humanoid-bench.github.io/"

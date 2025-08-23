@@ -1,0 +1,18 @@
+name: ManiSkill
+domain: Generalist
+first_release_date: 2021-07-30
+description: "SAPIEN-based benchmark targeting generalizable skills with four articulated-object and mobile manipulation tasks and a large LfD dataset."
+task_count: 50
+metric_count: 1
+robot_config_count: 39
+modality: [RGB, depth, pointcloud, proprioceptive]
+setting: [sim]
+sim_backend: "SAPIEN (PhysX)"
+data_source:
+  size: "~36,000 successful trajectories (~1.5M frames)"
+  collection_method: "motion_planner"
+resources:
+  homepage: "https://maniskill.ai/"
+  paper: "https://arxiv.org/abs/2107.14483"
+  code: "https://github.com/haosulab/ManiSkill"
+  data: "https://github.com/haosulab/ManiSkill#datasets"
