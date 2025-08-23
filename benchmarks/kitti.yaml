@@ -15,7 +15,7 @@ sim_backend: ""
 
 data_source:
   size: "Varies by task; multi-sensor vehicle platform"
-  collection_method: "human_teleoperation"
+  collection_method: "human_demonstration"
 
 resources:
   homepage: "https://www.cvlibs.net/datasets/kitti/"

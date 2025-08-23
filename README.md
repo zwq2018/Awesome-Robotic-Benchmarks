@@ -12,7 +12,7 @@ _For the **Simulation** domain, the summary table compares capabilities: physics
 
 **synthetic** — trajectories or episodes created programmatically or by generative scripts/LLMs without a physics-aware planner or human.
 
-**NOTE: currently this repo is underdevelopment and **any pr is welcomed**.
+**NOTE: Currently this repo is underdevelopment and any pr is welcomed**.
 
 ## Domains
 - [Manipulation](#manipulation)
@@ -27,8 +27,6 @@ _For the **Simulation** domain, the summary table compares capabilities: physics
 ---
 
 ## Manipulation
-
-**9 benchmarks**
 
 - **RLBench** (2019): A large-scale learning environment featuring 100 unique vision-guided manipulation tasks of varying difficulty. RLBench provides multimodal observations (RGB, depth, segmentation, proprioception) from multiple camera angles and an *infinite* supply of demonstration trajectories generated via built-in motion planners.
   
@@ -45,6 +43,10 @@ _For the **Simulation** domain, the summary table compares capabilities: physics
 - **CALVIN** (2021): An open-source simulated benchmark for learning long-horizon language-conditioned robot manipulation tasks. It features a Franka Emika Panda arm in four tabletop environments and 34 distinct manipulation tasks with unconstrained language instructions
   
   *Resources*: [Paper](https://arxiv.org/abs/2112.03227 ) | [Website](https://calvin.cs.uni-freiburg.de (offline, see GitHub)) | [Code](https://github.com/mees/calvin ) | [Data](https://github.com/mees/calvin/tree/main/dataset (download scripts))
+
+- **FurnitureBench** (2023): Reproducible real-world furniture assembly benchmark with standardized hardware/setup, 3D-printed parts, large teleoperation dataset, and a matching simulator (FurnitureSim).
+  
+  *Resources*: [Paper](https://arxiv.org/abs/2305.12821) | [Website](https://clvrai.github.io/furniture-bench/) | [Code](https://github.com/clvrai/furniture-bench) | [Data](https://clvrai.github.io/furniture-bench/docs/tutorials/dataset.html)
 
 - **LIBERO** (2023): A benchmark for lifelong robot learning featuring multitask manipulation with language conditioning. Focuses on knowledge transfer and generalization across diverse manipulation tasks.
   
@@ -74,6 +76,7 @@ _For the **Simulation** domain, the summary table compares capabilities: physics
 | Meta-World | table-top | 50 | 1 | 1 | proprioceptive | MuJoCo | unknown | N/A |
 | RoboSuite | table-top, mobile-manipulation | 9 | 2 | 10 | RGB, depth, proprioceptive | MuJoCo | human_demonstration | N/A |
 | CALVIN | table-top | 34 | 1 (primary metric: success rate) | 1 | RGB, depth, proprioceptive, language, tactile | PyBullet | human_demonstration | Hours of teleoperated play data (20K language instructions); 4 environments (A–D) with ~23K trajectories for training |
+| FurnitureBench | table-top | 8 | 2 | 1 | RGB, proprioceptive | NVIDIA Isaac Gym / PhysX (Factory) via FurnitureSim | human_demonstration | ≈219.6 hours, 5100 successful demonstrations |
 | LIBERO | table-top | 130 | 4 | 3 | RGB, depth, proprioceptive, language | RoboSuite (MuJoCo) | human_demonstration | 130+ tasks, 2500+ demonstrations |
 | RoboCasa | mobile-manipulation (household) | 100 (25 atomic + 75 composite) | 1 (success rate for task completion) | 3 (supports single-arm mobiles, humanoids, quadruped-with-arm) | RGB, proprioceptive | PhysX (NVIDIA Omniverse) | both | 100+K demonstration trajectories (e.g. 50 human demos ×25 skills + 72K generated) |
 | RoboTwin | dual-arm | 50 | 1 (task success rate) | 1 | RGB, depth, language | sapien | both | Synthetic dataset (hundreds of expert demos) + limited real demos per task |
@@ -83,8 +86,6 @@ _For the **Simulation** domain, the summary table compares capabilities: physics
 
 ## Locomotion
 
-**4 benchmarks**
-
 - **Gymnasium MuJoCo Locomotion (classic subset)** (2016): Canonical MuJoCo continuous-control locomotion tasks widely used as RL baselines (e.g., Ant, HalfCheetah, Hopper, Walker2d, Humanoid).
   
   *Resources*: [Paper](https://arxiv.org/abs/1606.01540) | [Website](https://gymnasium.farama.org/environments/mujoco/) | [Code](https://github.com/Farama-Foundation/Gymnasium)
@@ -92,10 +93,6 @@ _For the **Simulation** domain, the summary table compares capabilities: physics
 - **Brax** (2021): JAX-based differentiable physics engine reproducing classic MuJoCo-style tasks for massively parallel training.
   
   *Resources*: [Paper](https://arxiv.org/abs/2106.13281) | [Website](https://github.com/google/brax) | [Code](https://github.com/google/brax)
-
-- **OmniDrones** (2023): GPU-accelerated drone RL benchmark with diverse tasks, multiple UAV models, and multi-sensor suites.
-  
-  *Resources*: [Paper](https://arxiv.org/abs/2303.04796) | [Website](https://omnidrones-sim.github.io/) | [Code](https://github.com/omnidrones/omnidrones)
 
 - **HumanoidBench** (2024): Simulated humanoid benchmark with dexterous hands spanning whole-body manipulation and locomotion; designed for high-DoF control research.
   
@@ -107,13 +104,10 @@ _For the **Simulation** domain, the summary table compares capabilities: physics
 |---|---|---:|---:|---:|---|---|---|---|
 | Gymnasium MuJoCo Locomotion (classic subset) | - | 11 | 1 | 6 | RGB, depth, proprioceptive | MuJoCo | unknown | N/A |
 | Brax | - | 5 | 1 | 5 | proprioceptive | Brax (JAX) | unknown | N/A |
-| OmniDrones | - | 10 | 2 | 4 | RGB, depth, IMU, proprioceptive, lidar | NVIDIA Omniverse Isaac Sim (PhysX) | unknown | N/A (simulated training/eval) |
 | HumanoidBench | humanoid, whole-body | 27 | 1 | 4 | proprioceptive, RGB, tactile | MuJoCo | unknown | N/A |
 
 
 ## Navigation
-
-**5 benchmarks**
 
 - **KITTI** (2012): Large-scale real-world autonomous driving dataset and benchmark suite for perception and odometry.
   
@@ -139,16 +133,14 @@ _For the **Simulation** domain, the summary table compares capabilities: physics
 
 | Benchmark | Subtype | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |
 |---|---|---:|---:|---:|---|---|---|---|
-| KITTI | - | 8 | 8 | 1 | RGB, lidar, GPS_IMU | - | human_teleoperation | Varies by task; multi-sensor vehicle platform |
+| KITTI | - | 8 | 8 | 1 | RGB, lidar, GPS_IMU | - | human_demonstration | Varies by task; multi-sensor vehicle platform |
 | AI2-THOR | navigation+manipulation | N/A | N/A | 2 | RGB, depth, semantic | Unity 3D | synthetic | iTHOR: 120 rooms; 2000+ objects; RoboTHOR: sim-real apartments |
 | Habitat Navigation (PointNav/ObjectNav/ImageNav) | - | 3 | 2 | 1 | RGB, depth, semantic | Habitat-Sim | synthetic | large-scale episodes from HM3D/MP3D/Gibson splits (varies by year) |
 | ALFRED | navigation+manipulation | 7 | 2 | 1 | RGB, depth, semantic, language | AI2-THOR 2.0 | both | 25,743 directives; 8,055 expert demos |
-| SocialGym 2.0 | - | 4 | 4 | 1 | lidar, proprioceptive | ROS-based 2D (PettingZoo/SB3 integration) | unknwon | N/A (simulated training/eval) |
+| SocialGym 2.0 | social navigation | 4 | 4 | 1 | lidar, proprioceptive | ROS-based 2D (PettingZoo/SB3 integration) | unknwon | N/A (simulated training/eval) |
 
 
 ## HRI
-
-**1 benchmarks**
 
 - **Assistive Gym** (2019): Physics-based assistive robotics framework with human models and ADL tasks for safe robot assistance.
   
@@ -163,8 +155,6 @@ _For the **Simulation** domain, the summary table compares capabilities: physics
 
 ## Safety
 
-**2 benchmarks**
-
 - **Safety Gym** (2019): Constrained-RL benchmark with hazard/constraint costs across goal, push, and button tasks and multiple robots.
   
   *Resources*: [Paper](https://cdn.openai.com/safexp-short.pdf) | [Website](https://openai.com/research/safety-gym) | [Code](https://github.com/openai/safety-gym)
@@ -177,13 +167,11 @@ _For the **Simulation** domain, the summary table compares capabilities: physics
 
 | Benchmark | Subtype | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |
 |---|---|---:|---:|---:|---|---|---|---|
-| Safety Gym | - | 18 | 3 | 3 | lidar, proprioceptive | MuJoCo | synthetic | N/A (simulated training/eval) |
-| safe-control-gym | - | 2 | 3 | 3 | proprioceptive | PyBullet | synthetic | N/A (simulated training/eval) |
+| Safety Gym | - | 18 | 3 | 3 | lidar, proprioceptive | MuJoCo | unknown | N/A (simulated training/eval) |
+| safe-control-gym | - | 2 | 3 | 3 | proprioceptive | PyBullet | unknown | N/A (simulated training/eval) |
 
 
 ## Simulation
-
-**6 benchmarks**
 
 - **MuJoCo** (2012): A fast, accurate physics engine for rigid-body simulation in robotics and control.
   
@@ -223,8 +211,6 @@ _For the **Simulation** domain, the summary table compares capabilities: physics
 
 ## Generalist
 
-**2 benchmarks**
-
 - **ManiSkill** (2021): SAPIEN-based benchmark targeting generalizable skills with four articulated-object and mobile manipulation tasks and a large LfD dataset.
   
   *Resources*: [Paper](https://arxiv.org/abs/2107.14483) | [Website](https://maniskill.ai/) | [Code](https://github.com/haosulab/ManiSkill) | [Data](https://github.com/haosulab/ManiSkill#datasets)
@@ -238,12 +224,10 @@ _For the **Simulation** domain, the summary table compares capabilities: physics
 | Benchmark | Subtype | Task Count | Metric Count | Robot Configs | Modality | SIM | Data Source | Data Size |
 |---|---|---:|---:|---:|---|---|---|---|
 | ManiSkill | - | 50 | 1 | 39 | RGB, depth, pointcloud, proprioceptive | SAPIEN (PhysX) | motion_planner | ~36,000 successful trajectories (~1.5M frames) |
-| EmbodiedBench | N/A | 1128 (testing tasks across 4 envs) | 2 (e.g., success rate and subgoal success) | 4 | RGB, language | Multiple – AI2-THOR (Unity) for EB-ALFRED, Habitat-Sim for EB-Habitat/Navigation, and a robotics simulator for EB-Manipulation | both (uses existing human-collected and synthetic tasks) | 1,128 evaluation scenarios (drawn from ALFRED, Habitat, etc.) |
+| EmbodiedBench | - | 1128 (testing tasks across 4 envs) | 2 (e.g., success rate and subgoal success) | 4 | RGB, language | Multiple – AI2-THOR (Unity) for EB-ALFRED, Habitat-Sim for EB-Habitat/Navigation, and a robotics simulator for EB-Manipulation | both (uses existing human-collected and synthetic tasks) | 1,128 evaluation scenarios (drawn from ALFRED, Habitat, etc.) |
 
 
 ## Other
-
-**2 benchmarks**
 
 - **CARLA** (2017): Open-source urban driving simulator and benchmark; standard CoRL’17 suite of goal-directed navigation tasks.
   

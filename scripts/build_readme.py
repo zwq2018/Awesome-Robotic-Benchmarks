@@ -166,7 +166,7 @@ def build_readme(df: pd.DataFrame):
         "**human_demonstration** — trajectories recorded from a human controlling the robot/simulator (e.g., teleop, VR).\n\n"
         "**motion_planner** — trajectories generated/executed by a planner/IK/trajectory optimizer (e.g., MoveIt, RRT, CHOMP).\n\n"
         "**synthetic** — trajectories or episodes created programmatically or by generative scripts/LLMs without a physics-aware planner or human.\n\n"
-        "**NOTE: currently this repo is underdevelopment and **any pr is welcomed**.\n\n"
+        "**NOTE: Currently this repo is underdevelopment and any pr is welcomed**.\n\n"
         "## Domains\n" + toc + "\n\n---\n"
     )
 
@@ -174,7 +174,7 @@ def build_readme(df: pd.DataFrame):
     for domain in domains:
         ddf = df[df["domain"]==domain].copy()
         body.append(f"\n## {domain}\n")
-        body.append(f"**{len(ddf)} benchmarks**\n")
+        # body.append(f"**{len(ddf)} benchmarks**\n")
 
         ddf = ddf.sort_values(by=["dt","name"], ascending=[True, True], na_position="last")
         for _, r in ddf.iterrows():

@@ -1,5 +1,6 @@
 name: Habitat Navigation (PointNav/ObjectNav/ImageNav)
 domain: Navigation
+subtype: ""
 first_release_date: 2019-10-27
 
 description: "Photoreal embodied navigation benchmarks (PointNav, ObjectNav, ImageNav) run in Habitat-Sim with standard metrics like Success and SPL."

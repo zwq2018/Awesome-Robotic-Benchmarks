@@ -15,7 +15,7 @@ sim_backend: "PyBullet"
 
 data_source:
   size: "N/A (simulated training/eval)"
-  collection_method: "synthetic"
+  collection_method: "unknown"
 
 resources:
   homepage: "https://utiasdsl.github.io/safe-control-gym/"

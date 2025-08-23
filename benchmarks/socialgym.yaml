@@ -1,6 +1,6 @@
 name: SocialGym 2.0
 domain: Navigation
-subtype: ""
+subtype: "social navigation"
 first_release_date: 2023-03-09
 
 description: "2D ROS-based multi-agent social navigation simulator/benchmark with Python API and MARL baselines."

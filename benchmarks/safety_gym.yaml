@@ -15,7 +15,7 @@ sim_backend: "MuJoCo"
 
 data_source:
   size: "N/A (simulated training/eval)"
-  collection_method: "synthetic"
+  collection_method: "unknown"
 
 resources:
   homepage: "https://openai.com/research/safety-gym"
